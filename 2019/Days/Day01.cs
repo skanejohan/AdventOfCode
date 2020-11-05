@@ -24,8 +24,8 @@ namespace AdventOfCode.Days
             } 
         }
 
-        public static int Part1() => DataReader.ReadInts("Day1Input.txt").Select(FuelRequired).Sum();
+        public static int Part1() => DataReader.ReadInts("Day01Input.txt").Select(FuelRequired).Sum();
 
-        public static int Part2() => DataReader.ReadInts("Day1Input.txt").Select(FuelRequiredRecursively).Sum();
+        public static int Part2() => DataReader.ReadInts("Day01Input.txt").Select(FuelRequiredRecursively).Sum();
     }
 }
