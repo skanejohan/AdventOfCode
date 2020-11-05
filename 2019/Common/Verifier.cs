@@ -11,5 +11,13 @@ namespace AdventOfCode.Common
                 throw new Exception($"Expected {expected} but was {actual} at {at}");
             }
         }
+
+        public static void Verify(long expected, long actual, string at)
+        {
+            if (expected != actual)
+            {
+                throw new Exception($"Expected {expected} but was {actual} at {at}");
+            }
+        }
     }
 }
