@@ -15,10 +15,12 @@ namespace AdventOfCode.Common
         }
 
         public static IEnumerable<long> ReadCommaSeparatedLongList(string fileName)
-        {
-            return File.ReadAllText(FullFileName(fileName)).Split(",").Select(long.Parse);
-        }
+            => File.ReadAllText(FullFileName(fileName)).Split(",").Select(long.Parse);
 
-        private static string FullFileName(string fileName) => Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Data\", fileName);
+        public static string ReadAllText(string fileName)
+            => File.ReadAllText(FullFileName(fileName));
+
+        private static string FullFileName(string fileName) 
+            => Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Data\", fileName);
     }
 }
