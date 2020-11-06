@@ -27,6 +27,8 @@ namespace AdventOfCode
                 Verifier.Verify(5525561, Day05.Part2(), "day 5 part 2");
                 Verifier.Verify(110190, Day06.Part1(), "day 6 part 1");
                 Verifier.Verify(343, Day06.Part2(), "day 6 part 2");
+                Verifier.Verify(422858, Day07.Part1(), "day 7 part 1");
+                Verifier.Verify(14897241, Day07.Part2(), "day 7 part 2");
                 Console.WriteLine("All tests OK");
             }
             catch (Exception e)
