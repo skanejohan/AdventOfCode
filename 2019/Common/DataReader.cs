@@ -8,11 +8,14 @@ namespace AdventOfCode.Common
     {
         public static IEnumerable<int> ReadInts(string fileName)
         {
-            foreach(var line in File.ReadLines(FullFileName(fileName)))
+            foreach (var line in File.ReadLines(FullFileName(fileName)))
             {
                 yield return int.Parse(line);
             }
         }
+
+        public static IEnumerable<string> ReadStrings(string fileName)
+            => File.ReadLines(FullFileName(fileName));
 
         public static IEnumerable<long> ReadCommaSeparatedLongList(string fileName)
             => File.ReadAllText(FullFileName(fileName)).Split(",").Select(long.Parse);
