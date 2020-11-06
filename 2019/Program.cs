@@ -13,6 +13,16 @@ namespace AdventOfCode
 
         private static void TestAll()
         {
+            // Day 8: properly grouped:
+            // 01100 11110 01100 00110 01100
+            // 10010 00010 10010 00010 10010
+            // 10010 00100 10000 00010 10000
+            // 11110 01000 10000 00010 10000
+            // 10010 10000 10010 10010 10010
+            // 10010 11110 01100 01100 01100
+            // Looks like "AZCJC" which is the correct answer
+
+            var day8Expected = "011001111001100001100110010010000101001000010100101001000100100000001010000111100100010000000101000010010100001001010010100101001011110011000110001100";
             try
             {
                 Verifier.Verify(3339288, Day01.Part1(), "day 1 part 1");
@@ -29,6 +39,8 @@ namespace AdventOfCode
                 Verifier.Verify(343, Day06.Part2(), "day 6 part 2");
                 Verifier.Verify(422858, Day07.Part1(), "day 7 part 1");
                 Verifier.Verify(14897241, Day07.Part2(), "day 7 part 2");
+                Verifier.Verify(2440, Day08.Part1(), "day 8 part 1");
+                Verifier.Verify(day8Expected, Day08.Part2(), "day 8 part 2");
                 Console.WriteLine("All tests OK");
             }
             catch (Exception e)

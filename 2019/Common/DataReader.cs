@@ -23,6 +23,9 @@ namespace AdventOfCode.Common
         public static string ReadAllText(string fileName)
             => File.ReadAllText(FullFileName(fileName));
 
+        public static List<byte> ReadAllDigits(string fileName)
+            => File.ReadAllText(FullFileName(fileName)).Select(c => c.ToString()).Select(c => byte.Parse(c)).ToList();
+
         private static string FullFileName(string fileName) 
             => Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Data\", fileName);
     }
