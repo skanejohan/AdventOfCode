@@ -47,6 +47,8 @@ namespace AdventOfCode
                 Verifier.Verify(504, Day10.Part2(), "day 10 part 2");
                 Verifier.Verify(2255, Day11.Part1(), "day 11 part 1");
                 Verifier.Verify("BCKFPCRA", Day11.Part2(), "day 11 part 2");
+                Verifier.Verify(12466, Day12.Part1(), "day 12 part 1");
+                Verifier.Verify(360689156787864, Day12.Part2(), "day 12 part 2");
                 Console.WriteLine("All tests OK");
             }
             catch (Exception e)
