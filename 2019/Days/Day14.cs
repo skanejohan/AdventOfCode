@@ -1,4 +1,5 @@
 ﻿using AdventOfCode.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,43 +11,66 @@ namespace AdventOfCode.Days
         {
             LoadData();
             InitializeInventory();
-            Produce("FUEL");
-            return long.MaxValue - Inventory["ORE"];
+            ProduceElement("FUEL", 1);
+            return oreProduced;
         }
 
         public static long Part2()
         {
-            return 0;
+            LoadData();
+
+            var ore = 1000000000000L;
+            var fuelToProduce = 1L;
+            while (true)
+            {
+                InitializeInventory();
+                oreProduced = 0;
+                ProduceElement("FUEL", fuelToProduce);
+
+                var newFuelToProduce = (long)((double)ore / oreProduced * fuelToProduce); // binary search until correct ore used
+                if (newFuelToProduce == fuelToProduce)
+                {
+                    return newFuelToProduce;
+                }
+                fuelToProduce = newFuelToProduce;
+            }
         }
 
-        private static void Produce(string element)
+        private static long oreProduced = 0;
+        private static Queue<(string, long)> Need = new Queue<(string, long)>();
+        private static Dictionary<string, long> Inventory = new Dictionary<string, long>();
+        private static Dictionary<string, (List<(string, long)>, long)> ProductionRules; // Wanted => ([Required,RequiredCount],ProducedCount)
+
+        private static void ProduceElement(string element, long count)
         {
-            var rule = ProductionRules[element];            
-            while(!InventoryContainsEnoughOfAllRequired(rule.Item1))
+            Need.Enqueue((element, count));
+            while (Need.Any())
             {
-                foreach (var required in rule.Item1)
+                var (e, n) = Need.Dequeue();
+                if (e == "ORE")
                 {
-                    if (Inventory[required.Item1] < required.Item2)
+                    oreProduced += n;
+                }
+                else
+                {
+                    var rule = ProductionRules[e];
+                    var fromInv = Math.Min(n, Inventory[e]);
+                    n -= fromInv;
+                    Inventory[e] -= fromInv;
+
+                    if (n > 0)
                     {
-                        Produce(required.Item1);
+                        var multiplier = (long)Math.Ceiling((decimal)n / rule.Item2);
+                        Inventory[e] = Math.Max(0, multiplier * rule.Item2 - n);
+
+                        foreach (var required in rule.Item1)
+                        {
+                            Need.Enqueue((required.Item1, required.Item2 * multiplier));
+                        }
                     }
                 }
             }
-
-            foreach (var required in rule.Item1)
-            {
-                Inventory[required.Item1] -= required.Item2;
-            }
-            Inventory[element] += rule.Item2;
-
-            bool InventoryContainsEnoughOfAllRequired(List<(string,long)> required)
-                => !required.Any(r => Inventory[r.Item1] < r.Item2);
         }
-
-        private static Dictionary<string, long> Inventory = new Dictionary<string, long>();
-
-        // Wanted => ([Required,RequiredCount],ProducedCount)
-        private static Dictionary<string, (List<(string, long)>, long)> ProductionRules;
         
         private static void InitializeInventory()
         {
@@ -55,7 +79,6 @@ namespace AdventOfCode.Days
             {
                 Inventory[element] = 0;
             }
-            Inventory["ORE"] = long.MaxValue;
         }
 
         private static void LoadData()
