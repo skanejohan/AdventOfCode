@@ -9,19 +9,85 @@ namespace AdventOfCode.Days
     {
         public static long Part1()
         {
-            return 0;
+            var root = BfsTree.BuildFromMaze((0, 0));
+            var oxygenNode = BfsTree.FindPosition(MazeGenerator.OxygenSystemPosition, root);
+            return BfsTree.DepthOf(oxygenNode);
         }
 
         public static long Part2()
         {
-            return 0;
+            var root = BfsTree.BuildFromMaze(MazeGenerator.OxygenSystemPosition);
+            return BfsTree.MaxDepth(root)-1;
         }
 
         static Day15()
         {
-            Debug.DebugMode = Debug.Mode.MazeChanges;
+            Debug.DebugMode = Debug.Mode.None;
             MazeGenerator.GenerateMaze();
         }
+    }
+
+    internal static class BfsTree
+    {
+        public static Node BuildFromMaze((int x, int y) start)
+        {
+            openSpaces = new HashSet<(int x, int y)>(Maze.AllOpenSpaces());
+            root = new Node(start, null);
+            openSpaces.Remove(start);
+            AddChildren(root);
+            return root;
+        }
+
+        public class Node
+        {
+            public (int x, int y) Position { get; private set; }
+            public List<Node> Children { get; private set; }
+            public Node Parent { get; private set; }
+
+            public Node((int x, int y) position, Node parent)
+            {
+                Position = position;
+                Children = new List<Node>();
+                Parent = parent;
+            }
+        }
+
+        private static void AddChildren(Node parent)
+        {
+            foreach (var neighbor in Maze.NeighborsOf(parent.Position).Where(n => openSpaces.Contains(n)))
+            {
+                parent.Children.Add(new Node(neighbor, parent));
+                openSpaces.Remove(neighbor);
+            }
+            foreach (var child in parent.Children)
+            {
+                AddChildren(child);
+            }
+        }
+
+        public static Node FindPosition((int x, int y) pos, Node n)
+        {
+            if (n.Position == pos)
+            {
+                return n;
+            }
+            foreach (var c in n.Children)
+            {
+                var cn = FindPosition(pos, c);
+                if (cn != null)
+                {
+                    return cn;
+                }
+            }
+            return null;
+        }
+
+        public static long DepthOf(BfsTree.Node n, long depth = 0) => n.Parent == null ? depth : DepthOf(n.Parent, depth + 1);
+
+        public static long MaxDepth(BfsTree.Node n, long depth = 1) => n.Children.Count == 0 ? depth : n.Children.Max(n => MaxDepth(n, depth + 1));
+
+        private static Node root;
+        private static HashSet<(int x, int y)> openSpaces;
     }
 
     internal static class MazeGenerator 
@@ -34,11 +100,11 @@ namespace AdventOfCode.Days
 
         private static long Input()
         {
-            var attempt = Attempts.Pop().Where(dir => !Visited.Contains(Compass.PositionAfterMovement(DroidPosition, dir))).ToList();
+            var attempt = Attempts.Pop().Where(dir => !Visited.Contains(Compass.PositionAfterMovement(droidPosition, dir))).ToList();
             if (attempt.Count == 0)
             {
                 Backtracking = true;
-                Attempt = Compass.Opposite(EnteredFrom[DroidPosition]);
+                Attempt = Compass.Opposite(EnteredFrom[droidPosition]);
             }
             else
             {
@@ -48,14 +114,14 @@ namespace AdventOfCode.Days
                 Attempts.Push(attempt);
             }
             var backTrackingString = Backtracking ? " (BACKTRACKING)" : "";
-            Debug.Write($"({DroidPosition.x}),{DroidPosition.y}) - {Compass.Name(Attempt)}{backTrackingString} : ");
+            Debug.Write($"({droidPosition.x}),{droidPosition.y}) - {Compass.Name(Attempt)}{backTrackingString} : ");
             return Compass.ToLong(Attempt);
         }
 
         private static bool Output(long status)
         {
-            var previousPosition = DroidPosition;
-            var attemptedPosition = Compass.PositionAfterMovement(DroidPosition, Attempt);
+            var previousPosition = droidPosition;
+            var attemptedPosition = Compass.PositionAfterMovement(droidPosition, Attempt);
             if (status == 0)
             {
                 // The repair droid hit a wall. Its position has not changed.
@@ -66,13 +132,13 @@ namespace AdventOfCode.Days
             {
                 // The repair droid has moved one step in the requested direction.
                 Debug.WriteLine("OK");
-                DroidPosition = attemptedPosition;
+                droidPosition = attemptedPosition;
                 if (!Backtracking)
                 {
                     Maze.Set(attemptedPosition, Maze.Cell.Open);
                     if (status == 2)
                     {
-                        OxygenSystemPosition = attemptedPosition;
+                        oxygenSystemPosition = attemptedPosition;
                     }
                     EnteredFrom[attemptedPosition] = Attempt;
                     Visited.Add(attemptedPosition);
@@ -83,12 +149,14 @@ namespace AdventOfCode.Days
             return (Attempts.Count() > 1) || (Attempts.Peek().Count > 0);
         }
 
-        private static (int x, int y) DroidPosition = (0, 0);
-        private static (int x, int y) OxygenSystemPosition;
+        public static (int x, int y) OxygenSystemPosition => oxygenSystemPosition;
+
+        private static (int x, int y) droidPosition = (0, 0);
+        private static (int x, int y) oxygenSystemPosition;
         private static Compass.Direction Attempt;
         private static Stack<List<Compass.Direction>> Attempts = new Stack<List<Compass.Direction>>();
         private static Dictionary<(int x, int y), Compass.Direction> EnteredFrom = new Dictionary<(int x, int y), Compass.Direction>();
-        private static HashSet<(int x, int y)> Visited = new HashSet<(int, int)> { DroidPosition };
+        private static HashSet<(int x, int y)> Visited = new HashSet<(int, int)> { droidPosition };
         private static bool Backtracking = false;
 
         private static List<long> GetData() => DataReader.ReadCommaSeparatedLongList("Day15Input.txt").ToList();
@@ -174,6 +242,25 @@ namespace AdventOfCode.Days
                 return Cell.Unexplored;
             }
             return c;
+        }
+
+        public static IEnumerable<(int x, int y)> NeighborsOf((int x, int y) pos)
+        {
+            if (Get((pos.x - 1, pos.y)) == Cell.Open) { yield return (pos.x - 1, pos.y); }
+            if (Get((pos.x, pos.y - 1)) == Cell.Open) { yield return (pos.x, pos.y - 1); }
+            if (Get((pos.x + 1, pos.y)) == Cell.Open) { yield return (pos.x + 1, pos.y); }
+            if (Get((pos.x, pos.y + 1)) == Cell.Open) { yield return (pos.x, pos.y + 1); }
+        }
+
+        public static IEnumerable<(int x, int y)> AllOpenSpaces()
+        {
+            foreach(var kv in area) 
+            { 
+                if (kv.Value == Cell.Open)
+                {
+                    yield return kv.Key;
+                }
+            }
         }
 
         private static readonly Dictionary<(int x, int y), Cell> area = new Dictionary<(int x, int y), Cell>();
