@@ -20,7 +20,16 @@ namespace AdventOfCode.Days
         static Day15()
         {
             Debug.DebugMode = Debug.Mode.MazeChanges;
-            GenerateMaze();
+            MazeGenerator.GenerateMaze();
+        }
+    }
+
+    internal static class MazeGenerator 
+    {
+        public static void GenerateMaze()
+        {
+            Attempts.Push(Compass.AllDirections);
+            new IntCodeComputer(GetData(), Input, Output).Run();
         }
 
         private static long Input()
@@ -72,12 +81,6 @@ namespace AdventOfCode.Days
             }
 
             return (Attempts.Count() > 1) || (Attempts.Peek().Count > 0);
-        }
-
-        private static void GenerateMaze()
-        {
-            Attempts.Push(Compass.AllDirections);
-            new IntCodeComputer(GetData(), Input, Output).Run();
         }
 
         private static (int x, int y) DroidPosition = (0, 0);
