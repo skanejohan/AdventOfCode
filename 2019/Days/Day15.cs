@@ -9,93 +9,34 @@ namespace AdventOfCode.Days
     {
         public static long Part1()
         {
-            var root = BfsTree.BuildFromMaze((0, 0));
-            var oxygenNode = BfsTree.FindPosition(MazeGenerator.OxygenSystemPosition, root);
-            return BfsTree.DepthOf(oxygenNode);
+            var root = AreaTraversal<Day15Cell>.Bfs(area, (0, 0), c => c == Day15Cell.Open);
+            var oxygenNode = AreaTraversal<Day15Cell>.FindPosition(MazeGenerator.OxygenSystemPosition, root);
+            return AreaTraversal<Day15Cell>.DepthOf(oxygenNode);
         }
 
         public static long Part2()
         {
-            var root = BfsTree.BuildFromMaze(MazeGenerator.OxygenSystemPosition);
-            return BfsTree.MaxDepth(root)-1;
+            var root = AreaTraversal<Day15Cell>.Bfs(area, MazeGenerator.OxygenSystemPosition, c => c == Day15Cell.Open);
+            return AreaTraversal<Day15Cell>.MaxDepth(root)-1;
         }
 
         static Day15()
         {
-            Debug.DebugMode = Debug.Mode.None;
-            MazeGenerator.GenerateMaze();
-        }
-    }
-
-    internal static class BfsTree
-    {
-        public static Node BuildFromMaze((int x, int y) start)
-        {
-            openSpaces = new HashSet<(int x, int y)>(Maze.AllOpenSpaces());
-            root = new Node(start, null);
-            openSpaces.Remove(start);
-            AddChildren(root);
-            return root;
+            Day15Debug.DebugMode = Day15Debug.Mode.None;
+            area = MazeGenerator.GenerateMaze();
         }
 
-        public class Node
-        {
-            public (int x, int y) Position { get; private set; }
-            public List<Node> Children { get; private set; }
-            public Node Parent { get; private set; }
-
-            public Node((int x, int y) position, Node parent)
-            {
-                Position = position;
-                Children = new List<Node>();
-                Parent = parent;
-            }
-        }
-
-        private static void AddChildren(Node parent)
-        {
-            foreach (var neighbor in Maze.NeighborsOf(parent.Position).Where(n => openSpaces.Contains(n)))
-            {
-                parent.Children.Add(new Node(neighbor, parent));
-                openSpaces.Remove(neighbor);
-            }
-            foreach (var child in parent.Children)
-            {
-                AddChildren(child);
-            }
-        }
-
-        public static Node FindPosition((int x, int y) pos, Node n)
-        {
-            if (n.Position == pos)
-            {
-                return n;
-            }
-            foreach (var c in n.Children)
-            {
-                var cn = FindPosition(pos, c);
-                if (cn != null)
-                {
-                    return cn;
-                }
-            }
-            return null;
-        }
-
-        public static long DepthOf(BfsTree.Node n, long depth = 0) => n.Parent == null ? depth : DepthOf(n.Parent, depth + 1);
-
-        public static long MaxDepth(BfsTree.Node n, long depth = 1) => n.Children.Count == 0 ? depth : n.Children.Max(n => MaxDepth(n, depth + 1));
-
-        private static Node root;
-        private static HashSet<(int x, int y)> openSpaces;
+        private static Area<Day15Cell> area;
     }
 
     internal static class MazeGenerator 
     {
-        public static void GenerateMaze()
+        public static Area<Day15Cell> GenerateMaze()
         {
+            area = new Area<Day15Cell>(Day15Cell.Unexplored);
             Attempts.Push(Compass.AllDirections);
             new IntCodeComputer(GetData(), Input, Output).Run();
+            return area;
         }
 
         private static long Input()
@@ -114,7 +55,7 @@ namespace AdventOfCode.Days
                 Attempts.Push(attempt);
             }
             var backTrackingString = Backtracking ? " (BACKTRACKING)" : "";
-            Debug.Write($"({droidPosition.x}),{droidPosition.y}) - {Compass.Name(Attempt)}{backTrackingString} : ");
+            Day15Debug.Write($"({droidPosition.x}),{droidPosition.y}) - {Compass.Name(Attempt)}{backTrackingString} : ");
             return Compass.ToLong(Attempt);
         }
 
@@ -125,17 +66,19 @@ namespace AdventOfCode.Days
             if (status == 0)
             {
                 // The repair droid hit a wall. Its position has not changed.
-                Maze.Set(attemptedPosition, Maze.Cell.Wall);
-                Debug.WriteLine("BLOCKED");
+                area.Set(attemptedPosition, Day15Cell.Wall);
+                Day15Debug.Set(attemptedPosition, Day15Cell.Wall);
+                Day15Debug.WriteLine("BLOCKED");
             }
             else
             {
                 // The repair droid has moved one step in the requested direction.
-                Debug.WriteLine("OK");
+                Day15Debug.WriteLine("OK");
                 droidPosition = attemptedPosition;
                 if (!Backtracking)
                 {
-                    Maze.Set(attemptedPosition, Maze.Cell.Open);
+                    area.Set(attemptedPosition, Day15Cell.Open);
+                    Day15Debug.Set(attemptedPosition, Day15Cell.Open);
                     if (status == 2)
                     {
                         oxygenSystemPosition = attemptedPosition;
@@ -151,6 +94,7 @@ namespace AdventOfCode.Days
 
         public static (int x, int y) OxygenSystemPosition => oxygenSystemPosition;
 
+        private static Area<Day15Cell> area;
         private static (int x, int y) droidPosition = (0, 0);
         private static (int x, int y) oxygenSystemPosition;
         private static Compass.Direction Attempt;
@@ -161,6 +105,8 @@ namespace AdventOfCode.Days
 
         private static List<long> GetData() => DataReader.ReadCommaSeparatedLongList("Day15Input.txt").ToList();
     }
+
+    public enum Day15Cell { Unexplored, Wall, Open }
 
     internal static class Compass
     {
@@ -216,63 +162,13 @@ namespace AdventOfCode.Days
         }
     }
 
-    internal static class Maze
-    {
-        public enum Cell { Unexplored, Wall, Open }
-
-        public static int MinX { get; private set; } = 0;
-        public static int MinY { get; private set; } = 0;
-        public static int MaxX { get; private set; } = 0;
-        public static int MaxY { get; private set; } = 0;
-
-        public static void Set((int x, int y) pos, Cell cell)
-        {
-            area[pos] = cell;
-            MinX = Math.Min(MinX, pos.x);
-            MinY = Math.Min(MinY, pos.y);
-            MaxX = Math.Max(MaxX, pos.x);
-            MaxY = Math.Max(MaxY, pos.y);
-            Debug.Set(pos, cell);
-        }
-
-        public static Cell Get((int x, int y) pos)
-        {
-            if (!area.TryGetValue(pos, out Cell c))
-            {
-                return Cell.Unexplored;
-            }
-            return c;
-        }
-
-        public static IEnumerable<(int x, int y)> NeighborsOf((int x, int y) pos)
-        {
-            if (Get((pos.x - 1, pos.y)) == Cell.Open) { yield return (pos.x - 1, pos.y); }
-            if (Get((pos.x, pos.y - 1)) == Cell.Open) { yield return (pos.x, pos.y - 1); }
-            if (Get((pos.x + 1, pos.y)) == Cell.Open) { yield return (pos.x + 1, pos.y); }
-            if (Get((pos.x, pos.y + 1)) == Cell.Open) { yield return (pos.x, pos.y + 1); }
-        }
-
-        public static IEnumerable<(int x, int y)> AllOpenSpaces()
-        {
-            foreach(var kv in area) 
-            { 
-                if (kv.Value == Cell.Open)
-                {
-                    yield return kv.Key;
-                }
-            }
-        }
-
-        private static readonly Dictionary<(int x, int y), Cell> area = new Dictionary<(int x, int y), Cell>();
-    }
-
-    internal static class Debug
+    internal static class Day15Debug
     {
         public enum Mode { None, Operations, MazeChanges }
 
         public static Mode DebugMode;
 
-        public static void Set((int x, int y) pos, Maze.Cell cell)
+        public static void Set((int x, int y) pos, Day15Cell cell)
         {
             if (DebugMode == Mode.MazeChanges)
             {
@@ -303,11 +199,11 @@ namespace AdventOfCode.Days
             Console.Write(' ');
         }
 
-        private static Dictionary<Maze.Cell, ConsoleColor> CellColors = new Dictionary<Maze.Cell, ConsoleColor>
+        private static Dictionary<Day15Cell, ConsoleColor> CellColors = new Dictionary<Day15Cell, ConsoleColor>
         {
-            { Maze.Cell.Open, ConsoleColor.Yellow },
-            { Maze.Cell.Unexplored, ConsoleColor.Black },
-            { Maze.Cell.Wall, ConsoleColor.Red },
+            { Day15Cell.Open, ConsoleColor.Yellow },
+            { Day15Cell.Unexplored, ConsoleColor.Black },
+            { Day15Cell.Wall, ConsoleColor.Red },
         };
     }
 }
