@@ -246,7 +246,7 @@ namespace AdventOfCode.Common
                         ok = false;
                     }
                 }
-                return $"[{string.Join(',', opCodes)}] - rb = {relativeBase}";
+                return $"[{string.Join(",", opCodes)}] - rb = {relativeBase}";
             }
 
             private long Get(long address)

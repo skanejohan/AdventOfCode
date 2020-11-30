@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day07
+    public static class Day07
     {
         public static long Part1() => RunSystemWithInitialPhaseSettingsBetween(0, 4, GetData());
         public static long Part2() => RunSystemWithInitialPhaseSettingsBetween(5, 9, GetData());

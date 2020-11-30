@@ -1,17 +1,12 @@
 ﻿using AdventOfCode.Common;
-using AdventOfCode.Days;
+using AdventOfCode.Days2019;
 using System;
 
 namespace AdventOfCode
 {
-    class Program
+    public static class Runner2019
     {
-        public static void Main(string[] args)
-        {
-            TestAll();
-        }
-
-        private static void TestAll()
+        public static void TestAll()
         {
             // Day 8: properly grouped:
             // 01100 11110 01100 00110 01100
@@ -57,7 +52,7 @@ namespace AdventOfCode
                 Verifier.Verify(326, Day15.Part2(), "day 15 part 2");
                 Verifier.Verify("50053207", Day16.Part1(), "day 16 part 1");
                 Verifier.Verify(32749588, Day16.Part2(), "day 16 part 2");
-                Console.WriteLine("All tests OK");
+                Console.WriteLine("All tests for 2019 OK");
             }
             catch (Exception e)
             {

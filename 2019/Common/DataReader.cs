@@ -18,7 +18,7 @@ namespace AdventOfCode.Common
             => File.ReadLines(FullFileName(fileName));
 
         public static IEnumerable<long> ReadCommaSeparatedLongList(string fileName)
-            => File.ReadAllText(FullFileName(fileName)).Split(",").Select(long.Parse);
+            => File.ReadAllText(FullFileName(fileName)).Split(',').Select(long.Parse);
 
         public static string ReadAllText(string fileName)
             => File.ReadAllText(FullFileName(fileName));
@@ -27,6 +27,6 @@ namespace AdventOfCode.Common
             => File.ReadAllText(FullFileName(fileName)).Select(c => c.ToString()).Select(c => byte.Parse(c)).ToList();
 
         private static string FullFileName(string fileName) 
-            => Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Data\", fileName);
+            => Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\2019\Data\", fileName);
     }
 }

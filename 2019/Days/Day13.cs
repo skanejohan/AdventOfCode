@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
     public static class Day13
     {

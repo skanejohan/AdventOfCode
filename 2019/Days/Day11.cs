@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day11
+    public static class Day11
     {
         private static (int, int) robotPosition;
         private static Direction robotDirection;

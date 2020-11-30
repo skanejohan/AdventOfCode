@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day09
+    public static class Day09
     {
         public static long Part1() => RunWithInputInstruction(1);
         public static long Part2() => RunWithInputInstruction(2);

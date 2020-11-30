@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day06
+    public static class Day06
     {
         public static int Part1() => Orbiters.Keys.Aggregate(0, (total, next) => total + NoOfOrbits(next, 0));
 
@@ -24,8 +24,8 @@ namespace AdventOfCode.Days
             Orbiters = new Dictionary<string, string>();
             foreach (var line in DataReader.ReadStrings("Day06Input.txt"))
             {
-                var center = line.Split(")")[0];
-                var orbiter = line.Split(")")[1];
+                var center = line.Split(')')[0];
+                var orbiter = line.Split(')')[1];
                 Orbiters[orbiter] = center;
             }
         }
@@ -40,14 +40,14 @@ namespace AdventOfCode.Days
             recFn(orbiter, result);
             return result;
 
-            void recFn(string orbiter, List<string> result)
+            void recFn(string orb, List<string> res)
             {
-                result.Add(orbiter);
-                if (orbiter == "COM")
+                res.Add(orb);
+                if (orb == "COM")
                 {
                     return;
                 }
-                recFn(Orbiters[orbiter], result);
+                recFn(Orbiters[orb], res);
             }
         }
     }
