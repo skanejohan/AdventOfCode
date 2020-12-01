@@ -8,9 +8,11 @@
   <ItemGroup>
 	  <Compile Include="Library.fs" />
 	  <Content Include="Data\Day01Input.txt" />
+	  <Content Include="Data\Day02Input.txt" />
+	  <Content Include="Data\Day03Input.txt" />
 	  <Compile Include="Days\Day01.fs" />
+	  <Compile Include="Days\Day02.fs" />
+	  <Compile Include="Days\Day03.fs" />
   </ItemGroup>
-
-  <ItemGroup />
 
 </Project>

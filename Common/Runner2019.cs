@@ -20,6 +20,7 @@ namespace AdventOfCode
             var day8Expected = "011001111001100001100110010010000101001000010100101001000100100000001010000111100100010000000101000010010100001001010010100101001011110011000110001100";
             try
             {
+                Console.WriteLine("Running tests for 2019");
                 Verifier.Verify(3339288, Day01.Part1(), "day 1 part 1");
                 Verifier.Verify(5006064, Day01.Part2(), "day 1 part 2");
                 Verifier.Verify(2692315, Day02.Part1(), "day 2 part 1");

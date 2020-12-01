@@ -5,14 +5,14 @@ open Microsoft.FSharp.Collections
 
 module Day01 =
 
-    let Part1 =
+    let Part1 _ =
         let contents = GetDataAsByteList "Day01Input.txt"
         let howMany pred = Seq.filter pred >> Seq.length
         let up = contents |> howMany (fun a -> a = 40uy)
         let down = contents |> howMany (fun a -> a = 41uy)
         up - down
 
-    let Part2 =
+    let Part2 _ =
         let rec fn steps level input =
             if level = -1 
             then steps
