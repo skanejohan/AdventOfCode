@@ -1,6 +1,7 @@
 ﻿namespace AdventOfCode2020
 
 open System.IO
+open System.Text.RegularExpressions
 
 module Library =
 
@@ -25,3 +26,13 @@ module Library =
         | h :: t -> for (a, b) in pairs t do yield h, a, b
                     yield! triplets t
         | _ -> () } 
+
+    // Usage: see Day02.fs
+    let (|Regex|_|) pattern input =
+        let m = Regex.Match(input, pattern)
+        if m.Success then Some(List.tail [ for g in m.Groups -> g.Value ])
+        else None
+
+    // Example: count 'd' "Advent of code" will return 2
+    let count x = Seq.filter ((=) x) >> Seq.length
+
