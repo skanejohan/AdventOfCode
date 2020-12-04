@@ -9,7 +9,13 @@ module Library =
         let dir = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\2020\Data\")
         Path.Combine(dir, fileName)
 
+    let GetDataAsStringArray fileName = File.ReadAllLines (dataFile fileName)
+
     let GetDataAsStringList fileName = File.ReadAllLines (dataFile fileName) |> Array.toList
+
+    let GetDataAsCharLists fileName = GetDataAsStringList fileName |> List.map Seq.toList
+
+    let GetDataAsCharArrays fileName = GetDataAsStringArray fileName |> Array.map Seq.toArray
 
     let GetDataAsInts fileName = GetDataAsStringList fileName |> List.map int
 
