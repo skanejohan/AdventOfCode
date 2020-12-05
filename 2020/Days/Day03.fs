@@ -9,12 +9,12 @@ module Day03 =
 
     let rec slope x y dx dy w h = if (y < h) then (x % w, y) :: (slope (x+dx) (y+dy) dx dy w h) else []
 
-    let calcCollissions dx dy =
+    let calcCollissions dx dy : int64 =
         let area = GetDataAsCharArrays "Day03Input.txt"
         let h = Array.length area
         let w = Array.length area.[0]
         let sl = slope 0 0 dx dy w h
-        List.filter (fun (x, y) -> blocks x y area) sl |> List.length
+        List.filter (fun (x, y) -> blocks x y area) sl |> List.length |> int64
 
     let Part1 _ = calcCollissions 3 1
 

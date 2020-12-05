@@ -19,6 +19,8 @@ namespace AdventOfCode
                 Verifier.Verify(6419669520, Day03.Part2(0), "day 3 part 2");
                 Verifier.Verify(210, Day04.Part1(0), "day 4 part 1");
                 Verifier.Verify(131, Day04.Part2(0), "day 4 part 2");
+                Verifier.Verify(894, Day05.Part1(0), "day 5 part 1");
+                Verifier.Verify(579, Day05.Part2(0), "day 5 part 2");
                 Console.WriteLine("All tests for 2020 OK");
             }
             catch (Exception e)

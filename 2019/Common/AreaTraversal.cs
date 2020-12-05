@@ -37,7 +37,7 @@ namespace AdventOfCode.Common
             => n.Parent == null ? depth : DepthOf(n.Parent, depth + 1);
 
         public static long MaxDepth(Node n, long depth = 1)
-            => n.Children.Count == 0 ? depth : n.Children.Max(n => MaxDepth(n, depth + 1));
+            => n.Children.Count == 0 ? depth : n.Children.Max(nn => MaxDepth(nn, depth + 1));
 
         private static void AddChildren(Area<T> area, Node parent, Func<T, bool> isTraversable)
         {

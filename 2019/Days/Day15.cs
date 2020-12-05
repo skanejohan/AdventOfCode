@@ -26,10 +26,7 @@ namespace AdventOfCode.Days2019
             area = MazeGenerator.GenerateMaze();
         }
 
-        public static long MaxDepth(BfsTree.Node node, long depth = 1) => node.Children.Count == 0 ? depth : node.Children.Max(n => MaxDepth(n, depth + 1));
-
-        private static Node root;
-        private static HashSet<(int x, int y)> openSpaces;
+        private static Area<Day15Cell> area;
     }
 
     internal static class MazeGenerator 
