@@ -2,9 +2,9 @@
 using System;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day01
+    public static class Day01
     {
         private static int FuelRequired(int mass) => (int)Math.Floor((double)(mass / 3 - 2));
 
@@ -12,14 +12,14 @@ namespace AdventOfCode.Days
         {
             return fn(mass, 0);
 
-            int fn(int mass, int aggregate)
+            int fn(int m, int aggregate)
             {
-                if (mass == 0)
+                if (m == 0)
                 {
                     return aggregate;
                 }
 
-                var fuel = Math.Max(FuelRequired(mass), 0);
+                var fuel = Math.Max(FuelRequired(m), 0);
                 return fn(fuel, aggregate + fuel);
             } 
         }

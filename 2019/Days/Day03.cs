@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day03
+    public static class Day03
     {
         public static int Part1()
         {
@@ -155,8 +155,8 @@ namespace AdventOfCode.Days
 
         private static (IEnumerable<Movement>, IEnumerable<Movement>) Read()
         {
-            var texts = DataReader.ReadAllText("Day03Input.txt").Split("\n");
-            return (texts[0].Split(",").Select(s => new Movement(s)), texts[1].Split(",").Select(s => new Movement(s)));
+            var texts = DataReader.ReadAllText("Day03Input.txt").Split('\n');
+            return (texts[0].Split(',').Select(s => new Movement(s)), texts[1].Split(',').Select(s => new Movement(s)));
         }
 
         enum Direction { R, U, L, D };

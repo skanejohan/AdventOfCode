@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day10
+    public static class Day10
     {
         public static long Part1() 
             => NoOfCellsVisibleFrom(FindBestPosition());

@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    static class Day14
+    public static class Day14
     {
         public static long Part1()
         {
@@ -87,13 +87,13 @@ namespace AdventOfCode.Days
             foreach (var line in DataReader.ReadStrings("Day14Input.txt"))
             {
                 var Required = new List<(string, long)>();
-                var inputs = line.Split(" => ")[0];
-                var output = line.Split(" => ")[1];
-                foreach (var i in inputs.Split(", "))
+                var inputs = line.Split(new[] { " => " }, StringSplitOptions.None)[0];
+                var output = line.Split(new[] { " => " }, StringSplitOptions.None)[1];
+                foreach (var i in inputs.Split(new[] { ", " }, StringSplitOptions.None))
                 {
-                    Required.Add((i.Split(" ")[1].Trim(), long.Parse(i.Split(" ")[0].Trim())));
+                    Required.Add((i.Split(' ')[1].Trim(), long.Parse(i.Split(' ')[0].Trim())));
                 }
-                ProductionRules[output.Split(" ")[1].Trim()] = (Required, long.Parse(output.Split(" ")[0].Trim()));
+                ProductionRules[output.Split(' ')[1].Trim()] = (Required, long.Parse(output.Split(' ')[0].Trim()));
             }
         }
     }

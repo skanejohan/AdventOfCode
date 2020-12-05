@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day04
+    public static class Day04
     {
         public static int Part1() => result1;
         public static int Part2() => result2;

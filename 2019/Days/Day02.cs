@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day02
+    public static class Day02
     {
         public static long Part1()
         {

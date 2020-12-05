@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    class Day12
+    public class Day12
     {
         public static long Part1()
         {

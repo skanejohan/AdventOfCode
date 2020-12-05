@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Days
+namespace AdventOfCode.Days2019
 {
-    internal static class Day15
+    public static class Day15
     {
         public static long Part1()
         {
@@ -26,7 +26,10 @@ namespace AdventOfCode.Days
             area = MazeGenerator.GenerateMaze();
         }
 
-        private static Area<Day15Cell> area;
+        public static long MaxDepth(BfsTree.Node node, long depth = 1) => node.Children.Count == 0 ? depth : node.Children.Max(n => MaxDepth(n, depth + 1));
+
+        private static Node root;
+        private static HashSet<(int x, int y)> openSpaces;
     }
 
     internal static class MazeGenerator 

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\2015\2015.fsproj" />
+    <ProjectReference Include="..\2019\2019.csproj" />
+    <ProjectReference Include="..\2020\2020.fsproj" />
+  </ItemGroup>
+
+</Project>
