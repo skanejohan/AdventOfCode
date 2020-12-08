@@ -42,3 +42,10 @@ module Library =
     // Example: count 'd' "Advent of code" will return 2
     let count x = Seq.filter ((=) x) >> Seq.length
 
+    // Usage: see Day08.fs
+    let (|Prefix|_|) (p:string) (s:string) =
+        if s.StartsWith(p) then
+            Some(s.Substring(p.Length))
+        else
+            None
+
