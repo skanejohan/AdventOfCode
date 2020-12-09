@@ -19,6 +19,8 @@ module Library =
 
     let GetDataAsInts fileName = GetDataAsStringList fileName |> List.map int
 
+    let GetDataAsLongs fileName = GetDataAsStringList fileName |> List.map int64
+
     // [1, 2, 3] -> sequence (1, 2), (1, 3), (2, 3)
     let rec pairs l = seq {  
         match l with 
