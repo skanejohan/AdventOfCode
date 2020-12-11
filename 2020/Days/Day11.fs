@@ -5,26 +5,14 @@ open Microsoft.FSharp.Collections
 open Microsoft.FSharp.Core
 
 module Day11 =
-
-    let occupied map (row, col) = 
-        match CharMap.TryFind row col map with
-        | Some '#' -> true
-        | _        -> false
-    
-    let updateCell row col old fn map =
-        let n = fn row col map
-        match CharMap.Get row col map with
-        | 'L' when n = 0 -> '#'
-        | '#' when n > 3 -> 'L'
-        | _              -> old
-    
+   
     let allPositions rows cols = List.allPairs [0..rows-1] [0..cols-1]
 
     let stepOne fn map = 
         let rec update positions m = 
             match positions with
             | (r, c) :: ps -> let oldChar = CharMap.Get r c map
-                              let newChar = updateCell r c oldChar fn map
+                              let newChar = fn r c oldChar map
                               update ps (CharMap.Set r c newChar m)
             | _            -> m
         update (allPositions map.rows map.cols) map
@@ -45,21 +33,38 @@ module Day11 =
         CharMap.Count '#'
 
     let Part1 _ = 
-        let neighborPositions row col = 
-            [(row-1,col-1); 
-             (row-1,col); 
-             (row-1,col+1); 
-             (row,col+1); 
-             (row+1,col+1); 
-             (row+1,col); 
-             (row+1,col-1); 
-             (row,col-1)]
-        let noOfOccupiedNeighbors row col map = 
-            neighborPositions row col |>
-            List.map (occupied map) |>
-            List.filter id |>
-            List.length
-        run noOfOccupiedNeighbors
-    
+        let occupied map (row, col) = 
+            match CharMap.TryFind row col map with
+            | Some '#' -> true
+            | _        -> false
+        let updateCell1 r c old map =
+            let n = 
+                [(r-1,c-1); (r-1,c); (r-1,c+1); (r,c+1); (r+1,c+1); (r+1,c); (r+1,c-1); (r,c-1)] |>
+                List.map (occupied map) |>
+                List.filter id |>
+                List.length
+            match CharMap.Get r c map with
+            | 'L' when n = 0 -> '#'
+            | '#' when n > 3 -> 'L'
+            | _              -> old
+        run updateCell1
+
     let Part2 _ =
-        0
+        let rec findOccupiedChairs row col map =
+            let rec findOccupiedChair r c (dr, dc) = 
+                match CharMap.TryFind (r+dr) (c+dc) map with
+                | Some 'L' -> None
+                | Some '#' -> Some (r+dr, c+dc)
+                | Some '.' -> findOccupiedChair (r+dr) (c+dc) (dr, dc) 
+                | _        -> None
+            [(-1,-1); (-1,0); (-1,1); (0,1); (1,1); (1,0); (1,-1); (0,-1)] |>
+            List.map (findOccupiedChair row col) |> 
+            List.filter Option.isSome
+            |> List.map Option.get
+        let updateCell2 r c old map =
+            let n = findOccupiedChairs r c map |> List.length
+            match CharMap.Get r c map with
+            | 'L' when n = 0 -> '#'
+            | '#' when n > 4 -> 'L'
+            | _              -> old
+        run updateCell2
