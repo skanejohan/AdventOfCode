@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="CharMap.fs" />
     <Compile Include="Library.fs" />
     <Content Include="Data\Day01Input.txt" />
     <Content Include="Data\Day02Input.txt" />
@@ -24,6 +25,8 @@
     <Content Include="Data\Day10Input.txt" />
     <Content Include="Data\Day10TestData01.txt" />
     <Content Include="Data\Day10TestData02.txt" />
+    <Content Include="Data\Day11TestData01.txt" />
+    <Content Include="Data\Day11Input.txt" />
     <Compile Include="Days\Day01.fs" />
     <Compile Include="Days\Day02.fs" />
     <Compile Include="Days\Day03.fs" />
@@ -34,6 +37,7 @@
     <Compile Include="Days\Day08.fs" />
     <Compile Include="Days\Day09.fs" />
     <Compile Include="Days\Day10.fs" />
+    <Compile Include="Days\Day11.fs" />
   </ItemGroup>
 
 </Project>

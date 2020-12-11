@@ -58,3 +58,5 @@ module Library =
             if f x then incr i
             !i)
         |> Seq.map snd
+
+    let lastElement list = List.reduce (fun _ i -> i) list
