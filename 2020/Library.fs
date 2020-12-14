@@ -60,3 +60,21 @@ module Library =
         |> Seq.map snd
 
     let lastElement list = List.reduce (fun _ i -> i) list
+
+    let rec int64ToBitChars (i : int64) =
+        match i with
+        | 0L | 1L -> string i
+        | _ ->
+            let bit = string (i % 2L)
+            (int64ToBitChars (i / 2L)) + bit
+
+    let bitCharsToInt64 (bits : char list) =
+        let rec raise2 n = 
+            match n with
+            | 0L -> 1L
+            | x  -> 2L * raise2 (n-1L)
+        List.rev bits |>
+        List.map (fun x -> int x - 48) |>
+        List.zip (List.map int64 [0..List.length bits - 1]) |>
+        List.map (fun (a,b) -> (raise2 a) * int64 b) |>
+        List.sum

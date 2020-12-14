@@ -28,6 +28,9 @@
     <Content Include="Data\Day11TestData01.txt" />
     <Content Include="Data\Day11Input.txt" />
     <Content Include="Data\Day12Input.txt" />
+    <Content Include="Data\Day14Input.txt" />
+    <Content Include="Data\Day14TestData01.txt" />
+    <Content Include="Data\Day14TestData02.txt" />
     <Compile Include="Days\Day01.fs" />
     <Compile Include="Days\Day02.fs" />
     <Compile Include="Days\Day03.fs" />
@@ -40,6 +43,7 @@
     <Compile Include="Days\Day10.fs" />
     <Compile Include="Days\Day11.fs" />
     <Compile Include="Days\Day12.fs" />
+    <Compile Include="Days\Day14.fs" />
   </ItemGroup>
 
 </Project>
