@@ -78,3 +78,20 @@ module Library =
         List.zip (List.map int64 [0..List.length bits - 1]) |>
         List.map (fun (a,b) -> (raise2 a) * int64 b) |>
         List.sum
+
+    let rec flatten list =
+        match list with
+        | l :: ls -> l @ flatten ls
+        | _       -> []
+
+    // [[5; 14; 9; 12]; [15; 1; 5; 1]; [3; 9; 18; 7]] -> [[5; 15; 3]; [14; 1; 9]; [9; 5; 18]; [12; 1; 7]]
+    let rotateLists lists = 
+        let rec combine list1 list2 = 
+            match list1 with
+            | x :: xs -> match list2 with 
+                         | y :: ys -> (x @ y) :: combine xs ys
+                         | _       -> []
+            | _       -> []
+        let combine2 lists = List.fold (fun s a -> combine s a) (List.head lists) (List.tail lists)
+        let xx = List.map (List.map (fun a -> [a])) lists
+        combine2 xx
