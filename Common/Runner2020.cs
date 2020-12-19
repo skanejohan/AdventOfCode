@@ -35,6 +35,8 @@ namespace AdventOfCode
                 Verifier.Verify(2064, Day11.Part2(0), "day 11 part 2");
                 Verifier.Verify(1710, Day12.Part1(0), "day 12 part 1");
                 Verifier.Verify(62045, Day12.Part2(0), "day 12 part 2");
+                //TODO Verifier.Verify(5875750429995, Day13.Part1(0), "day 14 part 1");
+                //TODO Verifier.Verify(5272149590143, Day13.Part2(0), "day 14 part 2");
                 Verifier.Verify(5875750429995, Day14.Part1(0), "day 14 part 1");
                 Verifier.Verify(5272149590143, Day14.Part2(0), "day 14 part 2");
                 Verifier.Verify(959, Day15.Part1(0), "day 15 part 1");
@@ -43,6 +45,8 @@ namespace AdventOfCode
                 Verifier.Verify(622670335901, Day16.Part2(0), "day 16 part 2");
                 Verifier.Verify(353, Day17.Part1(0), "day 17 part 1");
                 Verifier.Verify(2472, Day17.Part2(0), "day 17 part 2");
+                Verifier.Verify(11076907812171, Day18.Part1(), "day 18 part 1");
+                Verifier.Verify(283729053022731, Day18.Part2(), "day 18 part 2");
                 Console.WriteLine("All tests for 2020 OK");
             }
             catch (Exception e)
