@@ -60,3 +60,18 @@ module Library =
         |> Seq.map snd
 
     let lastElement list = List.reduce (fun _ i -> i) list
+
+    let rec Gcd (a : int64) (b : int64) = if b = 0L then a else Gcd b (a % b)
+
+    let Lcm (a : int64) (b : int64) = a * b / Gcd a b
+
+    // create an active pattern
+    let (|Int|_|) str =
+       match System.Int32.TryParse(str:string) with
+       | (true,int) -> Some(int)
+       | _ -> None
+
+    let strToInt s =
+        match s with
+        | Int i -> Some i
+        | _     -> None
