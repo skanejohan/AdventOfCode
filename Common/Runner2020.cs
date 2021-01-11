@@ -48,7 +48,7 @@ namespace AdventOfCode
                 Verifier.Verify(11076907812171, Day18.Part1(), "day 18 part 1");
                 Verifier.Verify(283729053022731, Day18.Part2(), "day 18 part 2");
                 Verifier.Verify(149, Day19.Part1(), "day 19 part 1");
-                //TODO Verifier.Verify(, Day19.Part2(), "day 19 part 2");
+                Verifier.Verify(332, Day19.Part2(), "day 19 part 2");
                 //TODO Verifier.Verify(, Day20.Part1(), "day 20 part 1");
                 //TODO Verifier.Verify(, Day20.Part2(), "day 20 part 2");
                 //TODO Verifier.Verify(, Day21.Part1(), "day 21 part 1");
