@@ -55,11 +55,11 @@ namespace AdventOfCode
                 //TODO Verifier.Verify(, Day21.Part2(), "day 21 part 2");
                 //TODO Verifier.Verify(, Day22.Part1(), "day 22 part 1");
                 //TODO Verifier.Verify(, Day22.Part2(), "day 22 part 2");
-                //TODO Verifier.Verify(, Day23.Part1(), "day 23 part 1");
-                //TODO Verifier.Verify(, Day23.Part2(), "day 23 part 2");
-                //TODO Verifier.Verify(, Day24.Part1(), "day 24 part 1");
-                //TODO Verifier.Verify(, Day24.Part2(), "day 24 part 2");
-                //TODO Verifier.Verify(, Day25.Part1(), "day 25 part 1");
+                Verifier.Verify(75893264, Day23.Part1(), "day 23 part 1");
+                Verifier.Verify(38162588308, Day23.Part2(), "day 23 part 2");
+                Verifier.Verify(228, Day24.Part1(), "day 24 part 1");
+                Verifier.Verify(3672, Day24.Part2(), "day 24 part 2");
+                Verifier.Verify(181800, Day25.Part1(), "day 25 part 1");
                 //TODO Verifier.Verify(, Day25.Part2(), "day 25 part 2");
                 Console.WriteLine("All tests for 2020 OK");
             }
