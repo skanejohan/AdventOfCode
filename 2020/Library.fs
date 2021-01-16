@@ -95,3 +95,11 @@ module Library =
         let combine2 lists = List.fold (fun s a -> combine s a) (List.head lists) (List.tail lists)
         let xx = List.map (List.map (fun a -> [a])) lists
         combine2 xx
+
+    let intersection lists = 
+        List.fold (fun s l -> Set.intersect s (set l)) (List.head lists |> set) lists
+
+    let get key map def =
+        match Map.tryFind key map with
+        | Some v -> v
+        | None   -> def
