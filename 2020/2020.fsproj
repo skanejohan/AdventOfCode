@@ -62,6 +62,7 @@
     <Compile Include="Days\Day18.fs" />
     <Compile Include="Days\Day19.fs" />
     <Compile Include="Days\Day21.fs" />
+    <Compile Include="Days\Day22.fs" />
     <Compile Include="Days\Day23.fs" />
     <Compile Include="Days\Day24.fs" />
     <Compile Include="Days\Day25.fs" />
