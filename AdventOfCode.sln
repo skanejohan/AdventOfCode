@@ -15,6 +15,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpLib", "FSharpLib\FSha
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "2021", "2021\2021.fsproj", "{3294E4D2-2074-4222-9503-EB56EBF55A6D}"
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "20xx", "20xx\20xx.fsproj", "{A0D7195E-DE6A-4353-87B2-F8C9B06B0535}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3294E4D2-2074-4222-9503-EB56EBF55A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3294E4D2-2074-4222-9503-EB56EBF55A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3294E4D2-2074-4222-9503-EB56EBF55A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D7195E-DE6A-4353-87B2-F8C9B06B0535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D7195E-DE6A-4353-87B2-F8C9B06B0535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D7195E-DE6A-4353-87B2-F8C9B06B0535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D7195E-DE6A-4353-87B2-F8C9B06B0535}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
