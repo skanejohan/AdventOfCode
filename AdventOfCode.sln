@@ -11,7 +11,9 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "2015", "2015\2015.fsproj", 
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "2020", "2020\2020.fsproj", "{B8DA83E7-774C-4016-B1FD-664626BF67B1}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpLib", "FSharpLib\FSharpLib.fsproj", "{06D4621F-3530-4B74-B468-A4CE86066047}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpLib", "FSharpLib\FSharpLib.fsproj", "{06D4621F-3530-4B74-B468-A4CE86066047}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "2021", "2021\2021.fsproj", "{3294E4D2-2074-4222-9503-EB56EBF55A6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{06D4621F-3530-4B74-B468-A4CE86066047}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06D4621F-3530-4B74-B468-A4CE86066047}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06D4621F-3530-4B74-B468-A4CE86066047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3294E4D2-2074-4222-9503-EB56EBF55A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3294E4D2-2074-4222-9503-EB56EBF55A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3294E4D2-2074-4222-9503-EB56EBF55A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3294E4D2-2074-4222-9503-EB56EBF55A6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
