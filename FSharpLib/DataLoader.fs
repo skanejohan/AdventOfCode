@@ -2,7 +2,7 @@
 
 open System.IO
 
-open BitList
+open BitLists
 
 module DataLoader =
 
@@ -12,7 +12,7 @@ module DataLoader =
 
     let getDataAsCharLists fileName = getDataAsStringList fileName |> List.map Seq.toList
 
-    let getDataAsBitLists fileName = getDataAsCharLists fileName |> charListsToBitLists
+    let getDataAsBitLists fileName = getDataAsCharLists fileName |> BitLists.fromCharLists
 
     let getDataAsCharArrays fileName = getDataAsStringArray fileName |> Array.map Seq.toArray
 

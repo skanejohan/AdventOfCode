@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="IntList.fs" />
     <Compile Include="BitList.fs" />
+    <Compile Include="BitLists.fs" />
     <Compile Include="DataLoader.fs" />
     <Compile Include="Library.fs" />
     <Compile Include="Regex.fs" />
