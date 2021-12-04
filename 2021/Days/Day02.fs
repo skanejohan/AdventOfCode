@@ -1,7 +1,8 @@
 ﻿namespace AdventOfCode2021
 
-open Data
-open Regex
+open Lib.DataLoader
+open Lib.Regex
+open Spec2021
 
 module Day02 =
 
@@ -13,14 +14,14 @@ module Day02 =
         | _                                          -> ("", 0)
 
     let Part1 () = 
-        let input = getDataAsStringList "Day02Input.txt"
+        let input = getDataAsStringList (withPath "Day02Input.txt")
         let f = input |> List.map parseLine |> List.filter (fun (a, b) -> a = "F") |> List.map snd |> List.sum
         let d = input |> List.map parseLine |> List.filter (fun (a, b) -> a = "D") |> List.map snd |> List.sum
         let u = input |> List.map parseLine |> List.filter (fun (a, b) -> a = "U") |> List.map snd |> List.sum
         f * (d - u)
 
     let Part2 () =
-        let input = getDataAsStringList "Day02Input.txt"
+        let input = getDataAsStringList (withPath "Day02Input.txt")
         let moves = input |> List.map parseLine
         let rec move moves hor_pos depth aim =
             match moves with

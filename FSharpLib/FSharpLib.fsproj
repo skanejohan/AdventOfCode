@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="IntList.fs" />
+    <Compile Include="BitList.fs" />
+    <Compile Include="DataLoader.fs" />
+    <Compile Include="Library.fs" />
+    <Compile Include="Regex.fs" />
     <Compile Include="ListUtils.fs" />
     <Compile Include="GridN.fs" />
   </ItemGroup>

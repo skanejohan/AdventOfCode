@@ -1,15 +1,14 @@
-﻿namespace AdventOfCode2021
+﻿namespace Lib
 
 open System.IO
 
-open Spec2021
 open BitList
 
-module Data =
+module DataLoader =
 
-    let getDataAsStringArray fileName = File.ReadAllLines (dataFile fileName)
+    let getDataAsStringArray fileName = File.ReadAllLines fileName
 
-    let getDataAsStringList fileName = File.ReadAllLines (dataFile fileName) |> Array.toList
+    let getDataAsStringList fileName = getDataAsStringArray fileName |> Array.toList
 
     let getDataAsCharLists fileName = getDataAsStringList fileName |> List.map Seq.toList
 
@@ -21,4 +20,4 @@ module Data =
 
     let getDataAsLongs fileName = getDataAsStringList fileName |> List.map int64
 
-    let stringToInts (s : string) c = s.Split [|c|] |> Array.toList |> List.map int
+    let stringToInts (s : string) c = s.Split [|c|] |> Array.toList |> List.map int // TODO move

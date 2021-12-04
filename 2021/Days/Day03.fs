@@ -1,13 +1,14 @@
 ﻿namespace AdventOfCode2021
 
-open IntList
-open BitList
-open Data
+open Lib.IntList
+open Lib.BitList
+open Lib.DataLoader
+open Spec2021
 
 module Day03 =
 
     let Part1 () = 
-        let input = getDataAsBitLists "Day03Input.txt"
+        let input = getDataAsBitLists (withPath "Day03Input.txt")
         let result = List.map (fun i -> if i > (List.length input / 2) then 1 else 0) (fromIntList (sumBitLists input)) |> BitList
         bitListToInt64 result * bitListToInt64 (bitListInvert result)
 
@@ -31,5 +32,5 @@ module Day03 =
             calc 0 input
         let calcOxygen input = calcIt input mostCommonAt
         let calcCo2 input = calcIt input leastCommonAt
-        let input = getDataAsBitLists "Day03Input.txt"
+        let input = getDataAsBitLists (withPath "Day03Input.txt")
         bitListToInt64 (calcOxygen input) * bitListToInt64 (calcCo2 input)

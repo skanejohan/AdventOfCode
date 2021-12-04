@@ -1,6 +1,7 @@
 ﻿namespace AdventOfCode2021
 
-open Data
+open Lib.DataLoader
+open Spec2021
 
 module Day01 =
 
@@ -11,7 +12,7 @@ module Day01 =
         | _                  -> acc
 
     let Part1 () = 
-        let input = getDataAsInts "Day01Input.txt"
+        let input = getDataAsInts (withPath "Day01Input.txt")
         incs (List.head input) (List.tail input) 0
 
     let Part2 () = 
@@ -19,5 +20,5 @@ module Day01 =
             match xs with
             | x1 :: x2 :: x3 :: xss -> (x1 + x2 + x3) :: win (x2 :: x3 :: xss)
             | _                     -> []
-        let input = getDataAsInts "Day01Input.txt" |> win 
+        let input = getDataAsInts (withPath "Day01Input.txt") |> win 
         incs (List.head input) (List.tail input) 0

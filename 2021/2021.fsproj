@@ -7,11 +7,6 @@
 
   <ItemGroup>
     <Compile Include="Spec2021.fs" />
-    <Compile Include="IntList.fs" />
-    <Compile Include="BitList.fs" />
-    <Compile Include="Library.fs" />
-    <Compile Include="Data.fs" />
-    <Compile Include="Regex.fs" />
     <Content Include="Data\Day01Input.txt" />
     <Content Include="Data\Day02Input.txt" />
     <Content Include="Data\Day03Input.txt" />
@@ -41,6 +36,10 @@
     <Compile Include="Days\Day23.fs" />
     <Compile Include="Days\Day24.fs" />
     <Compile Include="Days\Day25.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FSharpLib\FSharpLib.fsproj" />
   </ItemGroup>
 
 </Project>

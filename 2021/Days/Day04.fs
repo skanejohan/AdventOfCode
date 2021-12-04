@@ -1,8 +1,9 @@
 ﻿namespace AdventOfCode2021
 
-open Data
-open Regex
-open Library
+open Lib.DataLoader
+open Lib.Regex
+open Lib.Library
+open Spec2021
 
 module Day04 =
 
@@ -70,7 +71,7 @@ module Day04 =
     let boardSumOfUnmarkedNumbers (Board lines) = List.sumBy lineSumOfUnmarkedNumbers lines
 
     let readData = 
-        let input = getDataAsStringList "Day04Input.txt"
+        let input = getDataAsStringList (withPath "Day04Input.txt")
         let numbers = stringToInts (List.head input) ','
         let boards = parseBoards (List.tail input)
         (boards, numbers)
