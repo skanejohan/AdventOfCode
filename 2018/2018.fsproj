@@ -2,20 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>_2021</RootNamespace>
+    <RootNamespace>_2018</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Spec2021.fs" />
-    <Compile Include="IntList.fs" />
-    <Compile Include="BitList.fs" />
-    <Compile Include="Library.fs" />
-    <Compile Include="Data.fs" />
-    <Compile Include="Regex.fs" />
     <Content Include="Data\Day01Input.txt" />
     <Content Include="Data\Day02Input.txt" />
-    <Content Include="Data\Day03Input.txt" />
-    <Content Include="Data\Day04Input.txt" />
+    <Compile Include="Library.fs" />
     <Compile Include="Days\Day01.fs" />
     <Compile Include="Days\Day02.fs" />
     <Compile Include="Days\Day03.fs" />
@@ -42,5 +35,7 @@
     <Compile Include="Days\Day24.fs" />
     <Compile Include="Days\Day25.fs" />
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>

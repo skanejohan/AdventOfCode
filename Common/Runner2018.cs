@@ -1,24 +1,24 @@
 ﻿using AdventOfCode.Common;
-using AdventOfCode2021;
+using AdventOfCode2018;
 using System;
 
 namespace AdventOfCode
 {
-    public static class Runner2021
+    public static class Runner2018
     {
         public static void TestAll()
         {
             try
             {
-                Console.WriteLine("Running tests for 2021");
-                Verifier.Verify(            1529, Day01.Part1(), "day 1 part 1");
-                Verifier.Verify(            1567, Day01.Part2(), "day 1 part 2");
-                Verifier.Verify(         1813801, Day02.Part1(), "day 2 part 1");
-                Verifier.Verify(      1960569556, Day02.Part2(), "day 2 part 1");
-                Verifier.Verify(         2724524, Day03.Part1(), "day 3 part 1");
-                Verifier.Verify(         2775870, Day03.Part2(), "day 3 part 2");
-                Verifier.Verify(           44736, Day04.Part1(), "day 4 part 1");
-                Verifier.Verify(            1827, Day04.Part2(), "day 4 part 2");
+                Console.WriteLine("Running tests for 2018");
+                Verifier.Verify(             435, Day01.Part1(), "day 1 part 1");
+                Verifier.Verify(             245, Day01.Part2(), "day 1 part 2");
+                Verifier.Verify(            6448, Day02.Part1(), "day 2 part 1");
+                Verifier.Verify(0, Day02.Part2(), "day 2 part 1");
+                Verifier.Verify(0, Day03.Part1(), "day 3 part 1");
+                Verifier.Verify(0, Day03.Part2(), "day 3 part 2");
+                Verifier.Verify(0, Day04.Part1(), "day 4 part 1");
+                Verifier.Verify(0, Day04.Part2(), "day 4 part 2");
                 Verifier.Verify(0, Day05.Part1(), "day 5 part 1");
                 Verifier.Verify(0, Day05.Part2(), "day 5 part 2");
                 Verifier.Verify(0, Day06.Part1(), "day 6 part 1");
@@ -60,7 +60,7 @@ namespace AdventOfCode
                 Verifier.Verify(0, Day24.Part1(), "day 24 part 1");
                 Verifier.Verify(0, Day24.Part2(), "day 24 part 2");
                 Verifier.Verify(0, Day25.Part1(), "day 25 part 1");
-                Console.WriteLine("All tests for 2021 OK");
+                Console.WriteLine("All tests for 2018 OK");
             }
             catch (Exception e)
             {
