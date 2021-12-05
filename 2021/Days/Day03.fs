@@ -1,7 +1,7 @@
 ﻿namespace AdventOfCode2021
 
-open Lib.BitList
-open Lib.BitLists
+open Lib.Collections.BitList
+open Lib.Collections.BitLists
 open Lib.DataLoader
 open Spec2021
 

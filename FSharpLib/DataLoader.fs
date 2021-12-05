@@ -2,7 +2,7 @@
 
 open System.IO
 
-open BitLists
+open Collections.BitLists
 
 module DataLoader =
 
@@ -19,5 +19,3 @@ module DataLoader =
     let getDataAsInts fileName = getDataAsStringList fileName |> List.map int
 
     let getDataAsLongs fileName = getDataAsStringList fileName |> List.map int64
-
-    let stringToInts (s : string) c = s.Split [|c|] |> Array.toList |> List.map int // TODO move

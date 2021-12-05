@@ -3,7 +3,7 @@
 open FSharp.Collections
 open Lib.DataLoader
 open Lib.Regex
-open Lib.CountMap
+open Lib.Collections.CountMap
 open Lib.Extensions.ListExtensions
 open Lib.Geometry.Point
 open Lib.Geometry.Line

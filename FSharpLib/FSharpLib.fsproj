@@ -5,16 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Collections\CountMap.fs" />
+    <Compile Include="Collections\BitList.fs" />
+    <Compile Include="Collections\BitLists.fs" />
     <Compile Include="Extensions\ListExtensions.fs" />
-    <Compile Include="CountMap.fs" />
+    <Compile Include="Extensions\StringExtensions.fs" />
     <Compile Include="Geometry\Point.fs" />
     <Compile Include="Geometry\Line.fs" />
-    <Compile Include="BitList.fs" />
-    <Compile Include="BitLists.fs" />
+    <Compile Include="Matrix\Matrix.fs" />
     <Compile Include="DataLoader.fs" />
     <Compile Include="Library.fs" />
     <Compile Include="Regex.fs" />
-    <Compile Include="ListUtils.fs" />
     <Compile Include="GridN.fs" />
   </ItemGroup>
 
