@@ -69,11 +69,6 @@ module Library =
         List.map (fun (a,b) -> (raise2 a) * int64 b) |>
         List.sum
 
-    let rec flatten list =
-        match list with
-        | l :: ls -> l @ flatten ls
-        | _       -> []
-
     // [[5; 14; 9; 12]; [15; 1; 5; 1]; [3; 9; 18; 7]] -> [[5; 15; 3]; [14; 1; 9]; [9; 5; 18]; [12; 1; 7]]
     let rotateLists lists = 
         let rec combine list1 list2 = 

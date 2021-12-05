@@ -11,6 +11,7 @@
     <Content Include="Data\Day02Input.txt" />
     <Content Include="Data\Day03Input.txt" />
     <Content Include="Data\Day04Input.txt" />
+    <Content Include="Data\Day05Input.txt" />
     <Compile Include="Days\Day01.fs" />
     <Compile Include="Days\Day02.fs" />
     <Compile Include="Days\Day03.fs" />

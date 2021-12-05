@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Extensions\ListExtensions.fs" />
+    <Compile Include="CountMap.fs" />
+    <Compile Include="Geometry\Point.fs" />
+    <Compile Include="Geometry\Line.fs" />
     <Compile Include="BitList.fs" />
     <Compile Include="BitLists.fs" />
     <Compile Include="DataLoader.fs" />
