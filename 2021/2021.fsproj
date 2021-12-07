@@ -7,12 +7,13 @@
 
   <ItemGroup>
     <Compile Include="Spec2021.fs" />
-    <Content Include="Data\Day06Input.txt" />
     <Content Include="Data\Day01Input.txt" />
     <Content Include="Data\Day02Input.txt" />
     <Content Include="Data\Day03Input.txt" />
     <Content Include="Data\Day04Input.txt" />
     <Content Include="Data\Day05Input.txt" />
+    <Content Include="Data\Day06Input.txt" />
+    <Content Include="Data\Day07Input.txt" />
     <Compile Include="Days\Day01.fs" />
     <Compile Include="Days\Day02.fs" />
     <Compile Include="Days\Day03.fs" />

@@ -19,3 +19,5 @@ module DataLoader =
     let getDataAsInts fileName = getDataAsStringList fileName |> List.map int
 
     let getDataAsLongs fileName = getDataAsStringList fileName |> List.map int64
+
+    let getDataAsString fileName = getDataAsStringList fileName |> List.head
