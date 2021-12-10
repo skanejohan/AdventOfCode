@@ -21,3 +21,9 @@ module DataLoader =
     let getDataAsLongs fileName = getDataAsStringList fileName |> List.map int64
 
     let getDataAsString fileName = getDataAsStringList fileName |> List.head
+
+    let getDataAsArray2D fileName = 
+        let input = getDataAsCharArrays fileName
+        let w = Array.length input.[0]
+        let h = Array.length input
+        Array2D.initBased 0 0 w h (fun i j -> input.[j].[i])
