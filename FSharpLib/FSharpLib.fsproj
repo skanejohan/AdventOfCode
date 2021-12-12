@@ -13,6 +13,8 @@
     <Compile Include="Geometry\Point.fs" />
     <Compile Include="Geometry\Line.fs" />
     <Compile Include="Matrix\Matrix.fs" />
+    <Compile Include="Utils\MapUtils.fs" />
+    <Compile Include="Utils\Array2dUtils.fs" />
     <Compile Include="Utils\StringUtils.fs" />
     <Compile Include="Utils\ListUtils.fs" />
     <Compile Include="DataLoader.fs" />
