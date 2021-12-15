@@ -11,3 +11,5 @@ module StringUtils =
     let stringToCharArray (s : string) = Seq.toArray s
 
     let withCharsInOrder (s : string) = s |> stringToCharList |> List.sort |> charListToString
+
+    let stringToChar (s : string) = List.head (stringToCharList s)
