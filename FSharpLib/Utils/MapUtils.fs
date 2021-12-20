@@ -2,6 +2,8 @@
 
 module MapUtils =
 
+    let get map def key = match Map.tryFind key map with | Some x -> x | None -> def
+
     let incCount key map = match Map.tryFind key map with           
                            | Some i -> Map.add key (i+1) map
                            | None   -> Map.add key 1 map
