@@ -1,5 +1,7 @@
 ﻿namespace Lib.Utils
 
+open Lib.Utils.CharUtils
+
 module ListUtils =
 
     let elemInList list elem = List.contains elem list
@@ -30,3 +32,8 @@ module ListUtils =
                      | Ok _    -> getErrors xs
                      | Error e -> e :: getErrors xs
         | _       -> []
+
+    // cartesian [0; 1; 3] [0; 2; 4] -> [(0, 0); (0, 2); (0, 4); (1, 0); (1, 2); (1, 4); (3, 0); (3, 2); (3, 4)]
+    let cartesian xs ys = xs |> List.collect (fun x -> ys |> List.map (fun y -> x, y))
+
+    let intListToString is = List.map numToChar is |> List.map string |> List.reduce (+)
