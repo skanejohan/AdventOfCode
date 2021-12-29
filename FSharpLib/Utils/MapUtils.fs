@@ -20,6 +20,10 @@ module MapUtils =
                                         | Some i -> Map.add key (i+n) map
                                         | None   -> Map.add key n map
 
+    let addCountB key (n : bigint) map = match Map.tryFind key map with           
+                                         | Some i -> Map.add key (i+n) map
+                                         | None   -> Map.add key n map
+
     let getCount key map = match Map.tryFind key map with           
                            | Some i -> i
                            | None   -> 0
