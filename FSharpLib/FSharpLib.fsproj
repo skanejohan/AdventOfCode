@@ -10,9 +10,16 @@
     <Compile Include="Collections\BitLists.fs" />
     <Compile Include="Extensions\ListExtensions.fs" />
     <Compile Include="Extensions\StringExtensions.fs" />
+    <Compile Include="Geometry\Box.fs" />
     <Compile Include="Geometry\Point.fs" />
     <Compile Include="Geometry\Line.fs" />
     <Compile Include="Matrix\Matrix.fs" />
+    <Compile Include="Utils\NumUtils.fs" />
+    <Compile Include="Utils\TwodUtils.fs" />
+    <Compile Include="Utils\BoolListUtils.fs" />
+    <Compile Include="Utils\CharUtils.fs" />
+    <Compile Include="Utils\HexUtils.fs" />
+    <Compile Include="Utils\Dijkstra.fs" />
     <Compile Include="Utils\MapUtils.fs" />
     <Compile Include="Utils\Array2dUtils.fs" />
     <Compile Include="Utils\StringUtils.fs" />
@@ -21,6 +28,10 @@
     <Compile Include="Library.fs" />
     <Compile Include="Regex.fs" />
     <Compile Include="GridN.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dijkstra.NET" Version="1.2.1" />
   </ItemGroup>
 
 </Project>
