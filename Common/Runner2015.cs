@@ -19,8 +19,10 @@ namespace AdventOfCode
                 Verifier.Verify(2639, Day03.Part2(0), "day 3 part 2");
                 Verifier.Verify(282749, Day04.Part1(0), "day 4 part 1");
                 Verifier.Verify(9962624, Day04.Part2(0), "day 4 part 2");
-                Verifier.Verify(569999, Day06.Part1(), "day 6 part 1");
-                Verifier.Verify(17836115, Day06.Part2(), "day 6 part 2");
+                Verifier.Verify(238, Day05.Part1(), "day 5 part 1");
+                Verifier.Verify(69, Day05.Part2 (), "day 5 part 2");
+                Verifier.Verify(569999, Day06.Part1 (), "day 6 part 1");
+                Verifier.Verify(17836115, Day06.Part2 (), "day 6 part 2");
                 Verifier.Verify(3176, Day07.Part1(), "day 7 part 1");
                 Console.WriteLine("All tests for 2015 OK");
             }
