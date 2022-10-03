@@ -16,6 +16,22 @@ namespace CSharpLib
         }
 
         /// <summary>
+        /// Get the number of rows in the grid
+        /// </summary>
+        public int NoOfRows()
+        {
+            return grid.GetLength(0);
+        }
+
+        /// <summary>
+        /// Get the number of columns in the grid
+        /// </summary>
+        public int NoOfCols()
+        {
+            return grid.GetLength(1);
+        }
+
+        /// <summary>
         /// Get a cell value
         /// </summary>
         public T Get(int row, int col)
@@ -36,7 +52,7 @@ namespace CSharpLib
         /// </summary>
         public IEnumerable<T> GetRow(int row)
         {
-            for (var c = 0; c < grid.GetLength(1); c++)
+            for (var c = 0; c < NoOfCols(); c++)
             {
                 yield return grid[row, c];
             }
@@ -47,9 +63,53 @@ namespace CSharpLib
         /// </summary>
         public IEnumerable<T> GetCol(int col)
         {
-            for (var r = 0; r < grid.GetLength(0); r++)
+            for (var r = 0; r < NoOfRows(); r++)
             {
                 yield return grid[r, col];
+            }
+        }
+
+        /// <summary>
+        /// Get up to 4 neighbors of a cell
+        /// </summary>
+        public IEnumerable<(int Row, int Col, T Value)> GetNeighbors4(int row, int col)
+        {
+            if (row > 0)
+            {
+                yield return (row - 1, col, grid[row - 1, col]);
+            }
+            if (col < NoOfCols() - 1)
+            {
+                yield return (row, col + 1, grid[row, col + 1]);
+            }
+            if (row < NoOfRows() - 1)
+            {
+                yield return (row + 1, col, grid[row + 1, col]);
+            }
+            if (col > 0)
+            {
+                yield return (row, col - 1, grid[row, col - 1]);
+            }
+        }
+
+        /// <summary>
+        /// Get up to 8 neighbors of a cell
+        /// </summary>
+        public IEnumerable<(int Row, int Col, T Value)> GetNeighbors8(int row, int col)
+        {
+            var minRow = row > 0 ? row - 1 : 0;
+            var minCol = col > 0 ? col - 1 : 0;
+            var maxRow = row < NoOfRows() - 1 ? row + 1 : NoOfRows() - 1;
+            var maxCol = col < NoOfCols() - 1 ? col + 1 : NoOfCols() - 1;
+            for (var r = minRow; r <= maxRow; r++)
+            {
+                for (var c = minCol; c <= maxCol; c++)
+                {
+                    if (r != row || c != col)
+                    {
+                        yield return (r, c, grid[r, c]);
+                    }
+                }
             }
         }
 
@@ -64,13 +124,13 @@ namespace CSharpLib
         /// <summary>
         /// Allows you to iterate over all cells.
         /// </summary>
-        public IEnumerable<(T Value, int Row, int Col)> Flattened()
+        public IEnumerable<(int Row, int Col, T Value)> Flattened()
         {
-            for (int row = 0; row < grid.GetLength(0); row++)
+            for (int row = 0; row < NoOfRows(); row++)
             {
-                for (int col = 0; col < grid.GetLength(1); col++)
+                for (int col = 0; col < NoOfCols(); col++)
                 {
-                    yield return (grid[row, col], row, col);
+                    yield return (row, col, grid[row, col]);
                 }
             }
         }
@@ -78,9 +138,9 @@ namespace CSharpLib
         public override string ToString()
         {
             var s = "";
-            for (var r = 0; r < grid.GetLength(0); r++)
+            for (var r = 0; r < NoOfRows(); r++)
             {
-                for(var c = 0; c < grid.GetLength(1); c++)
+                for(var c = 0; c < NoOfCols(); c++)
                 {
                     s += grid[r, c];
                 }
