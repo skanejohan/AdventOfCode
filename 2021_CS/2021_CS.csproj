@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>_2021_CS</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Day01\DataReal.txt" />
+    <None Remove="Day02\DataReal.txt" />
+    <None Remove="Day03\DataReal.txt" />
+    <None Remove="Day04\DataReal.txt" />
+    <None Remove="Day05\DataReal.txt" />
+    <None Remove="Day06\DataReal.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Day01\DataReal.txt" />
+    <Content Include="Day02\DataReal.txt" />
+    <Content Include="Day03\DataReal.txt" />
+    <Content Include="Day04\DataReal.txt" />
+    <Content Include="Day05\DataReal.txt" />
+    <Content Include="Day06\DataReal.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpLib\CSharpLib.csproj" />
+  </ItemGroup>
+
+</Project>
