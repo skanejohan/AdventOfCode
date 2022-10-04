@@ -29,7 +29,7 @@ namespace _2021_CS
 
         public int Score(int lastNumberPlayed)
         {
-            return board.Flattened().Where(c => !c.Value.Item2).Select(c => c.Value.Item1).Sum() * lastNumberPlayed;
+            return board.Where(c => !c.Value.Item2).Select(c => c.Value.Item1).Sum() * lastNumberPlayed;
         }
 
         private Grid<(int, bool)> board;

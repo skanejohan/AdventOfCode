@@ -8,7 +8,7 @@ namespace CSharpLib
     /// Represents a grid of values, with columns going from left to right (starting at index 0)
     /// and rows going from top to bottom (starting at index zero).
     /// </summary>
-    public class Grid<T> where T : IEquatable<T>
+    public class Grid<T> : IEnumerable<(int Row, int Col, T Value)> where T : IEquatable<T>
     {
         public Grid(IEnumerable<IEnumerable<T>> input)
         {
@@ -118,13 +118,13 @@ namespace CSharpLib
         /// </summary>
         public IEnumerable<(int Row, int Col)> Find(T value)
         {
-            return Flattened().Where(cell => cell.Value.Equals(value)).Select(cell => (cell.Row, cell.Col));
+            return this.Where(cell => cell.Value.Equals(value)).Select(cell => (cell.Row, cell.Col));
         }
 
         /// <summary>
         /// Allows you to iterate over all cells.
         /// </summary>
-        public IEnumerable<(int Row, int Col, T Value)> Flattened()
+        public IEnumerator<(int Row, int Col, T Value)> GetEnumerator()
         {
             for (int row = 0; row < NoOfRows(); row++)
             {
@@ -168,6 +168,11 @@ namespace CSharpLib
                 rowIndex++;
             }
             return grid;
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
 
         private T[,] grid;

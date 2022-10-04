@@ -22,7 +22,7 @@ namespace _2021_CS
 
         private static IEnumerable<(int Row, int Col, int Value)> GetLowPoints(Grid<int> heightMap)
         {
-            foreach (var h in heightMap.Flattened())
+            foreach (var h in heightMap)
             {
                 if (!heightMap.GetNeighbors4(h.Row, h.Col).Any(c => c.Value <= h.Value))
                 {

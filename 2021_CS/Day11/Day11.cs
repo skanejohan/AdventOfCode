@@ -36,12 +36,12 @@ namespace _2021_CS
         {
             var flashed = new HashSet<(int, int)>();
 
-            foreach (var (Row, Col, Value) in energyLevels.Flattened())
+            foreach (var (Row, Col, Value) in energyLevels)
             {
                 energyLevels.Set(Row, Col, Value + 1);
             }
             Flash();
-            foreach (var (Row, Col, Value) in energyLevels.Flattened().Where(x => x.Value > 9))
+            foreach (var (Row, Col, Value) in energyLevels.Where(x => x.Value > 9))
             {
                 energyLevels.Set(Row, Col, 0);
             }
@@ -49,7 +49,7 @@ namespace _2021_CS
 
             void Flash()
             {
-                var flashing = energyLevels.Flattened().Where(x => x.Value > 9 && !flashed.Contains((x.Row, x.Col)));
+                var flashing = energyLevels.Where(x => x.Value > 9 && !flashed.Contains((x.Row, x.Col)));
                 foreach (var f in flashing) 
                 {
                     flashed.Add((f.Row, f.Col));
