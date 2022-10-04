@@ -29,10 +29,10 @@ namespace AdventOfCode
                 Verifier.Verify(1040429, Day08.Part2(), "day 8 part 2");
                 Verifier.Verify(496, Day09.Part1(), "day 9 part 1");
                 Verifier.Verify(902880, Day09.Part2(), "day 9 part 2");
-                Verifier.Verify(          294195, Day10.Part1(), "day 10 part 1");
-                Verifier.Verify(      3490802734, Day10.Part2(), "day 10 part 2");
-                //Verifier.Verify(            1725, Day11.Part1(), "day 11 part 1");
-                //Verifier.Verify(             308, Day11.Part2(), "day 11 part 2");
+                Verifier.Verify(294195, Day10.Part1(), "day 10 part 1");
+                Verifier.Verify(3490802734, Day10.Part2(), "day 10 part 2");
+                Verifier.Verify(1725, Day11.Part1(), "day 11 part 1");
+                Verifier.Verify(308, Day11.Part2(), "day 11 part 2");
                 //Verifier.Verify(            4338, Day12.Part1(), "day 12 part 1");
                 //Verifier.Verify(          114189, Day12.Part2(), "day 12 part 2");
                 //Verifier.Verify(             661, Day13.Part1(), "day 13 part 1");
