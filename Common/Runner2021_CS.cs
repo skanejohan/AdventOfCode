@@ -35,8 +35,8 @@ namespace AdventOfCode
                 Verifier.Verify(308, Day11.Part2(), "day 11 part 2");
                 Verifier.Verify(4338, Day12.Part1(), "day 12 part 1");
                 Verifier.Verify(114189, Day12.Part2(), "day 12 part 2");
-                //Verifier.Verify(             661, Day13.Part1(), "day 13 part 1");
-                //Verifier.Verify(      "PFKLKCFP", Day13.Part2(), "day 13 part 2");
+                Verifier.Verify(661, Day13.Part1(), "day 13 part 1");
+                Verifier.Verify("PFKLKCFP", Day13.Part2(), "day 13 part 2");
                 //Verifier.Verify(            2975, Day14.Part1(), "day 14 part 1");
                 //Verifier.Verify(   3015383850689, Day14.Part2(), "day 14 part 2");
                 //Verifier.Verify(             393, Day15.Part1(), "day 15 part 1");

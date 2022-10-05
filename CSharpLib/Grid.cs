@@ -15,6 +15,22 @@ namespace CSharpLib
             grid = CreateGrid(input);
         }
 
+        public Grid(IEnumerable<(int Row, int Col, T Value)> values)
+        {
+            var noOfRows = values.Select(d => d.Row).Max() + 1;
+            var noOfCols = values.Select(d => d.Col).Max() + 1;
+            grid = new T[noOfRows, noOfCols];
+            foreach (var (Row, Col, Value) in values)
+            {
+                grid[Row, Col] = Value;
+            }
+        }
+
+        public Grid(int noOfRows, int noOfCols)
+        {
+            grid = new T[noOfRows, noOfCols];
+        }
+
         /// <summary>
         /// Get the number of rows in the grid
         /// </summary>

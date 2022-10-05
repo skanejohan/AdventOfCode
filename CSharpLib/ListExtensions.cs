@@ -16,34 +16,6 @@ namespace CSharpLib
         }
 
         /// <summary>
-        /// Returns an enumerable of lists where the individual lists are split by 
-        /// a line in the original list for which the splitFunction returns true.
-        /// </summary>
-        public static IEnumerable<List<T>> ChunkBy<T>(this List<T> items, Func<T, bool> splitFunction)
-        {
-            var chunk = new List<T>();
-            foreach (var item in items) 
-            { 
-                if (splitFunction(item))
-                {
-                    if (chunk.Count > 0)
-                    {
-                        yield return chunk;
-                    }
-                    chunk = new List<T>();
-                }
-                else
-                {
-                    chunk.Add(item);
-                }
-            }
-            if (chunk.Count > 0)
-            {
-                yield return chunk;
-            }
-        }
-
-        /// <summary>
         /// Returns the number of times an increase between two adjacent items is found.
         /// </summary>
         public static int NoOfIncreases(this List<int> items)
