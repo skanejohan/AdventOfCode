@@ -23,7 +23,7 @@ namespace _2021_CS
 
             static bool CanVisitSmallCave(CountedSet<string> visited, string cave)
             {
-                var visitedTwice = visited.All().Where(x => x.Item == x.Item.ToLower() && x.Count == 2);
+                var visitedTwice = visited.Where(x => x.Item == x.Item.ToLower() && x.Count == 2);
                 return visitedTwice.Count() == 0 || (visitedTwice.Count() == 1 && visited.Occurs(cave) == 0);
             }
         }

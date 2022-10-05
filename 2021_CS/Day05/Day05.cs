@@ -28,7 +28,7 @@ namespace _2021_CS
                     countedSet.Add((X, Y));
                 }
             }
-            return countedSet.All().Where(kv => kv.Item2 > 1).Count();
+            return countedSet.Where(kv => kv.Item2 > 1).Count();
         }
 
         private static (int X1, int Y1, int X2, int Y2) ParseLine(string s)

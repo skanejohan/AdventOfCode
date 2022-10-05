@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CSharpLib
@@ -6,15 +7,15 @@ namespace CSharpLib
     /// <summary>
     /// Maintains information about how many times an item occurs.
     /// </summary>
-    public class CountedSet<T> where T : notnull
+    public class CountedSet<T> : IEnumerable<(T Item, long Count)> where T : notnull
     {
-        public void Add(T item)
+        public void Add(T item, long count = 1)
         {
             if (!map.TryGetValue(item, out var value))
             {
                 value = 0;
             }
-            map[item] = value + 1;
+            map[item] = value + count;
         }
 
         public void Remove(T item)
@@ -33,12 +34,12 @@ namespace CSharpLib
             }
         }
 
-        public int Occurs(T item)
+        public long Occurs(T item)
         {
             return map.TryGetValue(item, out var value) ? value : 0;
         }
 
-        public IEnumerable<(T Item, int Count)> All()
+        public IEnumerator<(T Item, long Count)> GetEnumerator()
         {
             foreach (var key in map.Keys)
             {
@@ -48,9 +49,14 @@ namespace CSharpLib
 
         public override string ToString()
         {
-            return string.Join(',', All().Select(kv => $"[{kv.Item}={kv.Count}]"));
+            return string.Join(',', this.Select(kv => $"[{kv.Item}={kv.Count}]"));
         }
 
-        private readonly Dictionary<T, int> map = new Dictionary<T, int>();
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        private readonly Dictionary<T, long> map = new Dictionary<T, long>();
     }
 }

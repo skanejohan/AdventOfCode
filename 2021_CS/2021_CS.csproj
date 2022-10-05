@@ -28,6 +28,8 @@
     <None Remove="Day12\DataTest3.txt" />
     <None Remove="Day13\DataReal.txt" />
     <None Remove="Day13\DataTest.txt" />
+    <None Remove="Day14\RealData.txt" />
+    <None Remove="Day14\TestData.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +53,8 @@
     <Content Include="Day12\DataTest3.txt" />
     <Content Include="Day13\DataReal.txt" />
     <Content Include="Day13\DataTest.txt" />
+    <Content Include="Day14\RealData.txt" />
+    <Content Include="Day14\TestData.txt" />
   </ItemGroup>
 
   <ItemGroup>
