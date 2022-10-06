@@ -30,6 +30,8 @@
     <None Remove="Day13\DataTest.txt" />
     <None Remove="Day14\RealData.txt" />
     <None Remove="Day14\TestData.txt" />
+    <None Remove="Day15\RealData.txt" />
+    <None Remove="Day15\TestData.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,6 +57,12 @@
     <Content Include="Day13\DataTest.txt" />
     <Content Include="Day14\RealData.txt" />
     <Content Include="Day14\TestData.txt" />
+    <Content Include="Day15\RealData.txt" />
+    <Content Include="Day15\TestData.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dijkstra.NET" Version="1.2.1" />
   </ItemGroup>
 
   <ItemGroup>
