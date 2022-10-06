@@ -37,6 +37,16 @@ namespace CSharpLib
             return ReadStrings(fileName).Select(s => new BitArray(s.Select(c => c == setChar).ToArray()));
         }
 
+        public IEnumerable<byte[]> ReadHexStringsAsByteArrays(string fileName)
+        {
+            return ReadStrings(fileName).Select(s => s.ToHex());
+        }
+
+        public IEnumerable<BitArray> ReadHexStringsAsBitArrays(string fileName)
+        {
+            return ReadHexStringsAsByteArrays(fileName).Select(bs => new BitArray(bs.Select(b => b.ReverseBits()).ToArray()));
+        }
+
         private readonly string path;
     }
 }
