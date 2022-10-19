@@ -53,7 +53,7 @@ namespace _2021_CS.Day23
         /// of the possible moves in the original burrow. With each returned new burrow 
         /// is also included the cost of making the move that resulted in it.
         /// </summary>
-        public IEnumerable<(int Cost, string Burrow)> Neighbors(string burrow)
+        public IEnumerable<(string Burrow, long Cost)> Neighbors(string burrow)
         {
             foreach (var from in GetAmphipods(burrow))
             {
@@ -64,7 +64,7 @@ namespace _2021_CS.Day23
                     s[IndexGivenPosition[(to.X, to.Y)]] = from.C;
                     var cost = (int)Math.Pow(10, from.C - 'A');
                     var dist = from.Y - 1 + Math.Abs(to.X - from.X) + to.Y - 1;
-                    yield return (cost * dist, s.ToString());
+                    yield return (s.ToString(), cost * dist);
                 }
             }
         }

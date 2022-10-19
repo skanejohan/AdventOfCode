@@ -8,41 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Day01\DataReal.txt" />
-    <None Remove="Day02\DataReal.txt" />
-    <None Remove="Day03\DataReal.txt" />
-    <None Remove="Day04\DataReal.txt" />
-    <None Remove="Day05\DataReal.txt" />
-    <None Remove="Day06\DataReal.txt" />
-    <None Remove="Day07\DataReal.txt" />
-    <None Remove="Day08\DataReal.txt" />
-    <None Remove="Day09\DataReal.txt" />
-    <None Remove="Day09\DataTest.txt" />
-    <None Remove="Day10\DataReal.txt" />
-    <None Remove="Day10\DataTest.txt" />
-    <None Remove="Day11\DataReal.txt" />
-    <None Remove="Day11\DataTest.txt" />
-    <None Remove="Day12\DataReal.txt" />
-    <None Remove="Day12\DataTest1.txt" />
-    <None Remove="Day12\DataTest2.txt" />
-    <None Remove="Day12\DataTest3.txt" />
-    <None Remove="Day13\DataReal.txt" />
-    <None Remove="Day13\DataTest.txt" />
-    <None Remove="Day14\RealData.txt" />
-    <None Remove="Day14\TestData.txt" />
-    <None Remove="Day15\RealData.txt" />
-    <None Remove="Day15\TestData.txt" />
-    <None Remove="Day16\RealData.txt" />
-    <None Remove="Day18\RealData.txt" />
-    <None Remove="Day18\TestData.txt" />
-    <None Remove="Day19\TestData.txt" />
-    <None Remove="Day20\RealData.txt" />
-    <None Remove="Day20\TestData.txt" />
-    <None Remove="Day22\RealData.txt" />
-    <None Remove="Day22\TestData.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Day01\DataReal.txt" />
     <Content Include="Day02\DataReal.txt" />
     <Content Include="Day03\DataReal.txt" />
