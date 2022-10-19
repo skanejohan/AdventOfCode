@@ -17,7 +17,7 @@ namespace Y2022.Day06
 
         private static IEnumerable<string> LoadData(string fileName)
         {
-            return new DataLoader(2022, 1).ReadStrings(fileName);
+            return new DataLoader(2022, 6).ReadStrings(fileName);
         }
     }
 }
