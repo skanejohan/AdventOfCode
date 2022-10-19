@@ -79,6 +79,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dijkstra.NET" Version="1.2.1" />
+    <PackageReference Include="OptimizedPriorityQueue" Version="5.1.0" />
   </ItemGroup>
 
   <ItemGroup>
