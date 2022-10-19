@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpLib
+namespace CSharpLib.Utils
 {
     public static class GeometryUtils
     {

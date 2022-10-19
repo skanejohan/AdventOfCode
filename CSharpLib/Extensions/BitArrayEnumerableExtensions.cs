@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpLib
+namespace CSharpLib.Extensions
 {
     public static class BitArrayEnumerableExtensions
     {
@@ -33,7 +33,7 @@ namespace CSharpLib
         /// </summary>
         public static IEnumerable<BitArray> WithMostCommonValueAt(this IEnumerable<BitArray> bitArrays, int index)
         {
-            var mostCommonValue = MostCommonValueAt(bitArrays, index);
+            var mostCommonValue = bitArrays.MostCommonValueAt(index);
             return bitArrays.Where(ba => ba[index] == mostCommonValue);
         }
 
@@ -42,7 +42,7 @@ namespace CSharpLib
         /// </summary>
         public static IEnumerable<BitArray> WithLeastCommonValueAt(this IEnumerable<BitArray> bitArrays, int index)
         {
-            var mostCommonValue = MostCommonValueAt(bitArrays, index);
+            var mostCommonValue = bitArrays.MostCommonValueAt(index);
             return bitArrays.Where(ba => ba[index] != mostCommonValue);
         }
 

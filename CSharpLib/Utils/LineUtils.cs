@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpLib
+namespace CSharpLib.Utils
 {
     /// <summary>
     /// Utility functions for treating a pair of coordinates as a line.
@@ -12,13 +12,13 @@ namespace CSharpLib
         /// <summary>
         /// Is the line represented be these coordinates horizontal?
         /// </summary>
-        public static bool IsHorizontal(int X1, int Y1, int X2, int Y2) 
+        public static bool IsHorizontal(int X1, int Y1, int X2, int Y2)
             => Y1 == Y2;
 
         /// <summary>
         /// Is the line represented be these coordinates vertical?
         /// </summary>
-        public static bool IsVertical(int X1, int Y1, int X2, int Y2) 
+        public static bool IsVertical(int X1, int Y1, int X2, int Y2)
             => X1 == X2;
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace CSharpLib
                 var maxX = Math.Max(X1, X2);
                 foreach (var x in Enumerable.Range(minX, maxX - minX + 1))
                 {
-                    yield return(x, Y1);
+                    yield return (x, Y1);
                 }
             }
             else if (IsVertical(X1, Y1, X2, Y2))

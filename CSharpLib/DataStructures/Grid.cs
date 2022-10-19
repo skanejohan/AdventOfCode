@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpLib
+namespace CSharpLib.DataStructures
 {
     /// <summary>
     /// Represents a grid of values, with columns going from left to right (starting at index 0)
@@ -156,7 +156,7 @@ namespace CSharpLib
             var s = "";
             for (var r = 0; r < NoOfRows(); r++)
             {
-                for(var c = 0; c < NoOfCols(); c++)
+                for (var c = 0; c < NoOfCols(); c++)
                 {
                     s += grid[r, c];
                 }
@@ -188,7 +188,7 @@ namespace CSharpLib
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         private T[,] grid;

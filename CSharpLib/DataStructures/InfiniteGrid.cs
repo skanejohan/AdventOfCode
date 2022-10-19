@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpLib
+namespace CSharpLib.DataStructures
 {
     public class InfiniteGrid<T> : IEnumerable<(int Row, int Col, T Value)>
     {
@@ -53,7 +53,7 @@ namespace CSharpLib
             {
                 for (var x = MinX; x <= MaxX; x++)
                 {
-                    s += Get(x, y, default(T));
+                    s += Get(x, y, default);
                 }
                 s += '\n';
             }
@@ -106,7 +106,7 @@ namespace CSharpLib
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         private int? minX;

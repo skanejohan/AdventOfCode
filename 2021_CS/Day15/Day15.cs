@@ -1,4 +1,6 @@
 ﻿using CSharpLib;
+using CSharpLib.DataStructures;
+using CSharpLib.Extensions;
 using Dijkstra.NET.Graph;
 using Dijkstra.NET.ShortestPath;
 using System.Collections.Generic;

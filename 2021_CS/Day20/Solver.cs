@@ -1,4 +1,6 @@
 ﻿using CSharpLib;
+using CSharpLib.DataStructures;
+using CSharpLib.Extensions;
 using System;
 using System.Linq;
 

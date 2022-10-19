@@ -1,4 +1,4 @@
-﻿namespace CSharpLib
+﻿namespace CSharpLib.Extensions
 {
     public static class ByteExtensions
     {

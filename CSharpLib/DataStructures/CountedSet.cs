@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpLib
+namespace CSharpLib.DataStructures
 {
     /// <summary>
     /// Maintains information about how many times an item occurs.
@@ -28,7 +28,7 @@ namespace CSharpLib
             {
                 map.Remove(item);
             }
-            else 
+            else
             {
                 map[item] = value - 1;
             }
@@ -54,7 +54,7 @@ namespace CSharpLib
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         private readonly Dictionary<T, long> map = new Dictionary<T, long>();

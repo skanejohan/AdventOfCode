@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpLib
+namespace CSharpLib.Extensions
 {
     public static class ListExtensions
     {
         /// <summary>
         /// Remove the first item from the list and return it.
         /// </summary>
-        public static T Pop<T> (this List<T> list)
+        public static T Pop<T>(this List<T> list)
         {
             var result = list[0];
             list.RemoveAt(0);
@@ -28,7 +28,7 @@ namespace CSharpLib
         /// </summary>
         public static IEnumerable<T2> SlidingWindow3<T1, T2>(this List<T1> items, Func<T1, T1, T1, T2> producer)
         {
-            for (var i = 0; i < items.Count-2; i++)
+            for (var i = 0; i < items.Count - 2; i++)
             {
                 yield return producer(items[i], items[i + 1], items[i + 2]);
             }

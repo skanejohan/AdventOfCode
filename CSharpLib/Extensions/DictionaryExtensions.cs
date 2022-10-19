@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CSharpLib
+namespace CSharpLib.Extensions
 {
     public static class DictionaryExtensions
     {
@@ -11,7 +11,7 @@ namespace CSharpLib
                 list.Add(value);
             }
             else
-            { 
+            {
                 dictionary[key] = new List<TValue> { value };
             }
         }

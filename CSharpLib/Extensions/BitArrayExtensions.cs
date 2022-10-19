@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace CSharpLib
+namespace CSharpLib.Extensions
 {
     public static class BitArrayExtensions
     {
@@ -16,7 +16,7 @@ namespace CSharpLib
             {
                 if (bitArray[i])
                 {
-                    value += Convert.ToInt16(Math.Pow(2, bitArray.Count-i-1));
+                    value += Convert.ToInt16(Math.Pow(2, bitArray.Count - i - 1));
                 }
             }
             return value;

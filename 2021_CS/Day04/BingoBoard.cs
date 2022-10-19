@@ -1,4 +1,4 @@
-﻿using CSharpLib;
+﻿using CSharpLib.DataStructures;
 using System.Collections.Generic;
 using System.Linq;
 

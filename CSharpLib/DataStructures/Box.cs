@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpLib
+namespace CSharpLib.DataStructures
 {
     public class Box
     {
@@ -30,7 +30,7 @@ namespace CSharpLib
         {
             return (MaxX - MinX + 1) * (MaxY - MinY + 1) * (MaxZ - MinZ + 1);
         }
-        
+
         /// <summary>
         /// Return a box representing the volume which both this and 
         /// the other box occupies. If no volume is occupied by both 
