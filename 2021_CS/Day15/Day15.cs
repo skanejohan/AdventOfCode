@@ -1,20 +1,19 @@
 ﻿using CSharpLib;
+using CSharpLib.Algorithms;
 using CSharpLib.DataStructures;
 using CSharpLib.Extensions;
-using Dijkstra.NET.Graph;
-using Dijkstra.NET.ShortestPath;
 using System.Collections.Generic;
 
 namespace _2021_CS
 {
     public static class Day15
     {
-        public static int Part1()
+        public static long Part1()
         {
-            return Solve(GetData("RealData.txt")).Distance;
+            return Solve(GetData("RealData.txt"));
         }
 
-        public static int Part2()
+        public static long Part2()
         {
             var data = GetData("RealData.txt");
             var grid = new Grid<int>(data.NoOfRows() * 5, data.NoOfCols() * 5);
@@ -30,30 +29,23 @@ namespace _2021_CS
                     }
                 }
             }
-            return Solve(grid).Distance;
+            return Solve(grid);
         }
 
-        private static ShortestPathResult Solve(Grid<int> data)
+        private static long Solve(Grid<int> data)
         {
-            var graph = new Graph<(int, int), string>();
-            var cellIds = new Dictionary<(int, int), uint>();
+            var start = (0, 0);
+            var goal = (data.NoOfCols()-1, data.NoOfRows()-1);
 
-            foreach (var (Row, Col, _) in data)
+            IEnumerable<((int, int), long)> transformer((int Row, int Col) cell)
             {
-                cellIds.Add((Row, Col), graph.AddNode((Row, Col)));
-            }
-
-            foreach (var (Row, Col, Value) in data)
-            {
-                var myId = cellIds[(Row, Col)];
-                foreach (var n in data.GetNeighbors4(Row, Col))
+                foreach (var (Row, Col, Value) in data.GetNeighbors4(cell.Row, cell.Col))
                 {
-                    var neighborId = cellIds[(n.Row, n.Col)];
-                    graph.Connect(neighborId, myId, Value, "");
+                    yield return ((Row, Col), Value);
                 }
             }
 
-            return graph.Dijkstra(cellIds[(0, 0)], cellIds[(data.NoOfCols() - 1, data.NoOfRows() - 1)]);
+            return new Dijkstra<(int, int)>().Solve(start, goal, transformer);
         }
 
         private static Grid<int> GetData(string fileName) => new Grid<int>(new DataLoader(2021, 15).ReadEnumerableInts(fileName));

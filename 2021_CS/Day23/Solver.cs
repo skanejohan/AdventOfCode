@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpLib.Algorithms;
+using System;
 
 namespace _2021_CS.Day23
 {
@@ -6,9 +7,8 @@ namespace _2021_CS.Day23
     {
         public static long Part1()
         {
-            BurrowTransformerTests.Run();
             var burrowTransformer = new BurrowTransformer(false);
-            var dijkstra = new CSharpLib.Algorithms.Dijkstra<string>();
+            var dijkstra = new Dijkstra<string>();
             return dijkstra.Solve(
                 ".......BC..BA..DA..DC..", 
                 ".......AA..BB..CC..DD..", 
@@ -18,7 +18,7 @@ namespace _2021_CS.Day23
         public static long Part2()
         {
             var burrowTransformer = new BurrowTransformer(true);
-            var dijkstra = new CSharpLib.Algorithms.Dijkstra<string>();
+            var dijkstra = new Dijkstra<string>();
             return dijkstra.Solve(
                 ".......BDDCBCBADBAADACC",
                 ".......AAAABBBBCCCCDDDD",
