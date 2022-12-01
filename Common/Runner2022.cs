@@ -10,8 +10,8 @@ namespace AdventOfCode
             try
             {
                 Console.WriteLine("Running tests for 2022");
-                Verifier.Verify(0, Y2022.Day01.Solver.Part1(), "day 1 part 1");
-                Verifier.Verify(0, Y2022.Day01.Solver.Part2(), "day 1 part 2");
+                Verifier.Verify(69310, Y2022.Day01.Solver.Part1(), "day 1 part 1");
+                Verifier.Verify(206104, Y2022.Day01.Solver.Part2(), "day 1 part 2");
                 Verifier.Verify(0, Y2022.Day02.Solver.Part1(), "day 2 part 1");
                 Verifier.Verify(0, Y2022.Day02.Solver.Part2(), "day 2 part 1");
                 Verifier.Verify(0, Y2022.Day03.Solver.Part1(), "day 3 part 1");
