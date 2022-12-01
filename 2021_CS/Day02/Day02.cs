@@ -47,7 +47,7 @@ namespace _2021_CS
         enum Movement { Forward, Down, Up, None }
 
         private static IEnumerable<(Movement Movement, int Distance)> Data() => 
-            new DataLoader(2021, 2).ReadStrings("DataReal.txt").Select(ParseLine);
+            new DataLoader("2021_CS", 2).ReadStrings("DataReal.txt").Select(ParseLine);
 
         private static (Movement, int) ParseLine(string s)
         {

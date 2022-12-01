@@ -57,7 +57,7 @@ namespace _2021_CS.Day19
         private static IEnumerable<Scanner> GetScanners(string fileName)
         {
             var scannerId = 0; ;
-            return new DataLoader(2021, 19)
+            return new DataLoader("2021_CS", 19)
                 .ReadStrings(fileName).ChunkBy(s => s == "")
                 .Select(lines => lines.Skip(1).Select(ParseCoordinates))
                 .Select(beacons => new Scanner(scannerId++, beacons));

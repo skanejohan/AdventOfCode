@@ -53,7 +53,7 @@ namespace _2021_CS.Day22
 
         static IEnumerable<(bool On, Box Box)> ReadInput(string fileName)
         {
-            return new DataLoader(2021, 22).ReadStrings(fileName).Select(ParseLine);
+            return new DataLoader("2021_CS", 22).ReadStrings(fileName).Select(ParseLine);
 
             static (bool, Box) ParseLine(string s)
             {

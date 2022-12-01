@@ -48,7 +48,7 @@ namespace _2021_CS
             return lastScore;
         }
 
-        private static IEnumerable<string> RealData() => new DataLoader(2021, 4).ReadStrings("DataReal.txt");
-        private static IEnumerable<string> TestData() => new DataLoader(2021, 4).ReadStrings("DataTest.txt");
+        private static IEnumerable<string> RealData() => new DataLoader("2021_CS", 4).ReadStrings("DataReal.txt");
+        private static IEnumerable<string> TestData() => new DataLoader("2021_CS", 4).ReadStrings("DataTest.txt");
     }
 }

@@ -8,9 +8,14 @@ namespace CSharpLib
 {
     public class DataLoader
     {
+        public DataLoader(string year, int day)
+        {
+            path = Path.Combine(Directory.GetCurrentDirectory(), $"..\\..\\..\\..\\{year}\\Day{day:D2}\\");
+        }
+
         public DataLoader(int year, int day)
         {
-            path = Path.Combine(Directory.GetCurrentDirectory(), $"..\\..\\..\\..\\{year}_CS\\Day{day:D2}\\");
+            path = Path.Combine(Directory.GetCurrentDirectory(), $"..\\..\\..\\..\\{year}\\Day{day:D2}\\");
         }
 
         public IEnumerable<string> ReadStrings(string fileName)

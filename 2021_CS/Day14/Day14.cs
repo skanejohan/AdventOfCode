@@ -73,7 +73,7 @@ namespace _2021_CS
 
         private static (CountedSet<string> Template, char First, char Last, Dictionary<string, List<string>> Rules) GetData(string fileName)
         {
-            var parts = new DataLoader(2021, 14).ReadStrings(fileName).ChunkBy(line => line == "").ToList();
+            var parts = new DataLoader("2021_CS", 14).ReadStrings(fileName).ChunkBy(line => line == "").ToList();
 
             var templateString = parts[0].Single();
             var template = new CountedSet<string>();

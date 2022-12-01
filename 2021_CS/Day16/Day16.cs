@@ -22,7 +22,7 @@ namespace _2021_CS
             return parser.Value;
         }
 
-        private static BitArray GetBits(string fileName) => new DataLoader(2021, 16).ReadHexStringsAsBitArrays(fileName).ToList().First();
+        private static BitArray GetBits(string fileName) => new DataLoader("2021_CS", 16).ReadHexStringsAsBitArrays(fileName).ToList().First();
 
         private class BitsParser
         {

@@ -9,7 +9,7 @@ namespace _2021_CS
     {
         public static long Part1()
         {
-            var energyLevels = new Grid<int>(new DataLoader(2021, 11).ReadEnumerableInts("DataReal.txt"));
+            var energyLevels = new Grid<int>(new DataLoader("2021_CS", 11).ReadEnumerableInts("DataReal.txt"));
             var flashed = 0;
             for (var i = 0; i < 100; i++)
             {
@@ -20,7 +20,7 @@ namespace _2021_CS
 
         public static long Part2()
         {
-            var energyLevels = new Grid<int>(new DataLoader(2021, 11).ReadEnumerableInts("DataReal.txt"));
+            var energyLevels = new Grid<int>(new DataLoader("2021_CS", 11).ReadEnumerableInts("DataReal.txt"));
             var steps = 0;
             while (true)
             {

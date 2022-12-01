@@ -59,7 +59,7 @@ namespace _2021_CS
         private static Dictionary<string, List<string>> GetMap(string fileName)
         {
             var map = new Dictionary<string, List<string>>();
-            foreach (var line in new DataLoader(2021, 12).ReadStrings(fileName))
+            foreach (var line in new DataLoader("2021_CS", 12).ReadStrings(fileName))
             {
                 var from = line.Split('-')[0];
                 var to = line.Split('-')[1];

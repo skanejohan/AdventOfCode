@@ -9,14 +9,14 @@ namespace _2021_CS
     {
         public static long Part1()
         {
-            var heightMap = new Grid<int>(new DataLoader(2021, 9).ReadEnumerableInts("DataReal.txt"));
+            var heightMap = new Grid<int>(new DataLoader("2021_CS", 9).ReadEnumerableInts("DataReal.txt"));
             var lowPoints = GetLowPoints(heightMap);
             return lowPoints.Select(p => p.Value).Sum() + lowPoints.Count();
         }
 
         public static long Part2()
         {
-            var heightMap = new Grid<int>(new DataLoader(2021, 9).ReadEnumerableInts("DataReal.txt"));
+            var heightMap = new Grid<int>(new DataLoader("2021_CS", 9).ReadEnumerableInts("DataReal.txt"));
             var basins = GetLowPoints(heightMap).Select(p => GetBasin(heightMap, p)).Select(bs => bs.Count()).OrderBy(i => -i).ToList();
             return basins[0] * basins[1] * basins[2];
         }

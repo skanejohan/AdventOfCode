@@ -52,7 +52,7 @@ namespace _2021_CS
 
         private static IEnumerable<(IEnumerable<string> SignalPatterns, IEnumerable<string> OutputValues)> RealData()
         {
-            var lines = new DataLoader(2021, 8).ReadStrings("DataReal.txt");
+            var lines = new DataLoader("2021_CS", 8).ReadStrings("DataReal.txt");
             foreach (var line in lines)
             {
                 var sp = line.Split(" | ")[0];

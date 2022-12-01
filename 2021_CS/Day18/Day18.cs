@@ -8,7 +8,7 @@ namespace _2021_CS.Day18
     {
         public static long Part1()
         {
-            var data = new DataLoader(2021, 18).ReadStrings("RealData.txt").Select(SnailfishNumber.Parse);
+            var data = new DataLoader("2021_CS", 18).ReadStrings("RealData.txt").Select(SnailfishNumber.Parse);
             var result = data.First();
             foreach(var sn in data.Skip(1))
             {
@@ -19,7 +19,7 @@ namespace _2021_CS.Day18
 
         public static long Part2()
         {
-            var data = new DataLoader(2021, 18).ReadStrings("RealData.txt").Select(SnailfishNumber.Parse);
+            var data = new DataLoader("2021_CS", 18).ReadStrings("RealData.txt").Select(SnailfishNumber.Parse);
 
             long largestMagnitude = 0;
             var snailfishNumbers = data.ToList();

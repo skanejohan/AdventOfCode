@@ -48,6 +48,6 @@ namespace _2021_CS
             return new Dijkstra<(int, int)>().Solve(start, goal, transformer);
         }
 
-        private static Grid<int> GetData(string fileName) => new Grid<int>(new DataLoader(2021, 15).ReadEnumerableInts(fileName));
+        private static Grid<int> GetData(string fileName) => new Grid<int>(new DataLoader("2021_CS", 15).ReadEnumerableInts(fileName));
     }
 }

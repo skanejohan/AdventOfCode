@@ -46,7 +46,7 @@ namespace _2021_CS
 
         private static (Grid<int> Paper, IEnumerable<(char, int)> Folds) GetPaperAndFolds(string fileName)
         {
-            var input = (new DataLoader(2021, 13).ReadStrings(fileName)).ToList().ChunkBy(s => s == "").ToList();
+            var input = (new DataLoader("2021_CS", 13).ReadStrings(fileName)).ToList().ChunkBy(s => s == "").ToList();
             var dots = input[0].Select(s => (int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]))).Select(d => (d.Item2, d.Item1, 1)).ToList();
             var folds = input[1].Select(s => (s.Split('=')[0].Last(), int.Parse(s.Split('=')[1])));
             return (new Grid<int>(dots), folds);

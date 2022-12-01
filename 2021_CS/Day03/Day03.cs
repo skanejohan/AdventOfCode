@@ -51,7 +51,7 @@ namespace _2021_CS
             return arrays.First();
         }
 
-        private static IEnumerable<BitArray> RealData() => new DataLoader(2021, 3).ReadBitArrays("DataReal.txt");
-        private static IEnumerable<BitArray> TestData() => new DataLoader(2021, 3).ReadBitArrays("DataTest.txt");
+        private static IEnumerable<BitArray> RealData() => new DataLoader("2021_CS", 3).ReadBitArrays("DataReal.txt");
+        private static IEnumerable<BitArray> TestData() => new DataLoader("2021_CS", 3).ReadBitArrays("DataTest.txt");
     }
 }

@@ -11,6 +11,6 @@ namespace _2021_CS
 
         public static int Part2() => Data().SlidingWindow3((a, b, c) => a + b + c).ToList().NoOfIncreases();
 
-        private static List<int> Data() => new DataLoader(2021, 1).ReadInts("DataReal.txt").ToList();
+        private static List<int> Data() => new DataLoader("2021_CS", 1).ReadInts("DataReal.txt").ToList();
     }
 }

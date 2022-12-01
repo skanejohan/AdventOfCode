@@ -27,7 +27,7 @@ namespace _2021_CS
             return positions.Select(p => moveCost(p, moveTo)).Sum();
         }
 
-        private static IEnumerable<int> TestData() => new DataLoader(2021, 7).ReadOneLineOfInts("DataTest.txt");
-        private static IEnumerable<int> RealData() => new DataLoader(2021, 7).ReadOneLineOfInts("DataReal.txt");
+        private static IEnumerable<int> TestData() => new DataLoader("2021_CS", 7).ReadOneLineOfInts("DataTest.txt");
+        private static IEnumerable<int> RealData() => new DataLoader("2021_CS", 7).ReadOneLineOfInts("DataReal.txt");
     }
 }

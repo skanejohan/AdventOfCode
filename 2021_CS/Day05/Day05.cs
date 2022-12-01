@@ -41,7 +41,7 @@ namespace _2021_CS
             return (int.Parse(part1[0]), int.Parse(part1[1]), int.Parse(part2[0]), int.Parse(part2[1]));
         }
 
-        private static IEnumerable<string> RealData() => new DataLoader(2021, 5).ReadStrings("DataReal.txt");
-        private static IEnumerable<string> TestData() => new DataLoader(2021, 5).ReadStrings("DataTest.txt");
+        private static IEnumerable<string> RealData() => new DataLoader("2021_CS", 5).ReadStrings("DataReal.txt");
+        private static IEnumerable<string> TestData() => new DataLoader("2021_CS", 5).ReadStrings("DataTest.txt");
     }
 }

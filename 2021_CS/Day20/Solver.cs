@@ -60,7 +60,7 @@ namespace _2021_CS.Day20
 
         private static (InfiniteGrid<bool> Image, bool[] Algorithm) GetData(string fileName)
         {
-            var chunks = new DataLoader(2021, 20).ReadStrings(fileName).ChunkBy(s => s == "").ToList();
+            var chunks = new DataLoader("2021_CS", 20).ReadStrings(fileName).ChunkBy(s => s == "").ToList();
             var algorithm = chunks[0][0].Select(c => c == '#').ToArray();
             var image = new InfiniteGrid<bool>();
             for (var x = 0; x < chunks[1][0].Length; x++)

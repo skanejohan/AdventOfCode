@@ -99,7 +99,7 @@ namespace _2021_CS
             }
         }
 
-        private static IEnumerable<string> TestData() => new DataLoader(2021, 10).ReadStrings("DataTest.txt");
-        private static IEnumerable<string> RealData() => new DataLoader(2021, 10).ReadStrings("DataReal.txt");
+        private static IEnumerable<string> TestData() => new DataLoader("2021_CS", 10).ReadStrings("DataTest.txt");
+        private static IEnumerable<string> RealData() => new DataLoader("2021_CS", 10).ReadStrings("DataReal.txt");
     }
 }

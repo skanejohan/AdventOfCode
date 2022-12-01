@@ -18,7 +18,7 @@ namespace _2021_CS
         private static long[] RealData()
         {
             long[] data = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            foreach (var fish in new DataLoader(2021, 6).ReadOneLineOfInts("DataReal.txt"))
+            foreach (var fish in new DataLoader("2021_CS", 6).ReadOneLineOfInts("DataReal.txt"))
             {
                 data[fish] = data[fish] + 1;
             }
