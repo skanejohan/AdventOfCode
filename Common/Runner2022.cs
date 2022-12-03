@@ -14,8 +14,8 @@ namespace AdventOfCode
                 Verifier.Verify(206104, Y2022.Day01.Solver.Part2(), "day 1 part 2");
                 Verifier.Verify(13052, Y2022.Day02.Solver.Part1(), "day 2 part 1");
                 Verifier.Verify(13693, Y2022.Day02.Solver.Part2(), "day 2 part 1");
-                Verifier.Verify(0, Y2022.Day03.Solver.Part1(), "day 3 part 1");
-                Verifier.Verify(0, Y2022.Day03.Solver.Part2(), "day 3 part 2");
+                Verifier.Verify(8493, Y2022.Day03.Solver.Part1(), "day 3 part 1");
+                Verifier.Verify(2552, Y2022.Day03.Solver.Part2(), "day 3 part 2");
                 Verifier.Verify(0, Y2022.Day04.Solver.Part1(), "day 4 part 1");
                 Verifier.Verify(0, Y2022.Day04.Solver.Part2(), "day 4 part 2");
                 Verifier.Verify(0, Y2022.Day05.Solver.Part1(), "day 5 part 1");
