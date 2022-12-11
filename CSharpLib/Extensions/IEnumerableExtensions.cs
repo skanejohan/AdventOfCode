@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CSharpLib.Utils;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpLib.Extensions
 {
@@ -31,6 +33,17 @@ namespace CSharpLib.Extensions
             {
                 yield return chunk;
             }
+        }
+
+        // Least Common Multiple (LCM) is the smallest number that is a multiple of all numbers.
+        public static long Lcm(this IEnumerable<long> values)
+        {
+            var lcm = values.First();
+            foreach (var value in values)
+            {
+                lcm = MathUtils.Lcm(lcm, value);
+            }
+            return lcm;
         }
     }
 }
