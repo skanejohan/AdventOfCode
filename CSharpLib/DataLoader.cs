@@ -23,6 +23,11 @@ namespace CSharpLib
             return File.ReadLines($"{path}\\{fileName}");
         }
 
+        public IEnumerable<IEnumerable<char>> ReadEnumerableChars(string fileName)
+        {
+            return File.ReadLines($"{path}\\{fileName}");
+        }
+
         public IEnumerable<IEnumerable<int>> ReadEnumerableInts(string fileName)
         {
             return File.ReadLines($"{path}\\{fileName}").Select(s => s.Select(c => c - '0'));
