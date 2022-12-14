@@ -12,9 +12,10 @@ namespace CSharpLib.DataStructures
         public int MaxY => GetMaxY();
         public int NoOfCellsSet => grid.Count;
 
-        public InfiniteGrid()
+        public InfiniteGrid(T def = default)
         {
             grid = new Dictionary<(int, int), T>();
+            this.def = def;
         }
 
         public void Add(int x, int y, T value)
@@ -53,7 +54,7 @@ namespace CSharpLib.DataStructures
             {
                 for (var x = MinX; x <= MaxX; x++)
                 {
-                    s += Get(x, y, default);
+                    s += Get(x, y, def);
                 }
                 s += '\n';
             }
@@ -114,5 +115,6 @@ namespace CSharpLib.DataStructures
         private int? maxX;
         private int? maxY;
         private readonly Dictionary<(int, int), T> grid;
+        private readonly T def;
     }
 }
