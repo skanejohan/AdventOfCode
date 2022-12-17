@@ -21,6 +21,10 @@ namespace CSharpLib.DataStructures
         public void Add(int x, int y, T value)
         {
             grid.Add((x, y), value);
+            minX = x < minX ? x : minX;
+            minY = y < minY ? y : minY;
+            maxX = x > maxX ? x : maxX;
+            maxY = y > maxY ? y : maxY; 
         }
 
         public void Remove(int x, int y)
@@ -51,6 +55,20 @@ namespace CSharpLib.DataStructures
         {
             var s = "";
             for (var y = MinY; y <= MaxY; y++)
+            {
+                for (var x = MinX; x <= MaxX; x++)
+                {
+                    s += Get(x, y, def);
+                }
+                s += '\n';
+            }
+            return s;
+        }
+
+        public string ToStringUpsideDown()
+        {
+            var s = "";
+            for (var y = MaxY; y >= MinY; y--)
             {
                 for (var x = MinX; x <= MaxX; x++)
                 {
