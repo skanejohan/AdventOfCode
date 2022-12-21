@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 
 namespace CSharpLib
 {
@@ -36,6 +37,21 @@ namespace CSharpLib
         public IEnumerable<int> ReadInts(string fileName)
         {
             return ReadStrings(fileName).Select(int.Parse);
+        }
+
+        public IEnumerable<long> ReadLongs(string fileName)
+        {
+            return ReadStrings(fileName).Select(long.Parse);
+        }
+
+        public IEnumerable<ulong> ReadUlongs(string fileName)
+        {
+            return ReadStrings(fileName).Select(ulong.Parse);
+        }
+
+        public IEnumerable<BigInteger> ReadBigInts(string fileName)
+        {
+            return ReadStrings(fileName).Select(BigInteger.Parse);
         }
 
         public IEnumerable<int> ReadOneLineOfInts(string fileName)
