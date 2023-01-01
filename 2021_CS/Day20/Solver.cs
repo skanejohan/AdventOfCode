@@ -37,7 +37,7 @@ namespace _2021_CS.Day20
                 for (var y = input.Image.MinY - 1; y <= input.Image.MaxY + 1; y++)
                 {
                     var index = GetIndexAt(input.Image, x, y, bgValue);
-                    image.Add(x, y, input.Algorithm[index]);
+                    image.Set(x, y, input.Algorithm[index]);
                 }
             }
             return (image, input.Algorithm);
@@ -67,7 +67,7 @@ namespace _2021_CS.Day20
             { 
                 for (var y = 0; y < chunks[1].Count; y++)
                 {
-                    image.Add(x, y, chunks[1][y][x] == '#');
+                    image.Set(x, y, chunks[1][y][x] == '#');
                 }
             }
             return (image, algorithm);

@@ -18,7 +18,7 @@ namespace Y2022.Day14
                 {
                     break;
                 }
-                grid.Add(x, y, 'o');
+                grid.Set(x, y, 'o');
                 dropped++;
             }
             return dropped;
@@ -33,7 +33,7 @@ namespace Y2022.Day14
             {
                 (x, y) = Drop(500, 0, grid);
                 (x, y) = Trickle(x, y, grid);
-                grid.Add(x, y, 'o');
+                grid.Set(x, y, 'o');
                 dropped++;
             }
             return dropped;
@@ -97,7 +97,7 @@ namespace Y2022.Day14
                         {
                             if (!grid.Has(x1, y))
                             {
-                                grid.Add(x1, y, '#');
+                                grid.Set(x1, y, '#');
                             }
                         }
                     }
@@ -107,7 +107,7 @@ namespace Y2022.Day14
                         {
                             if (!grid.Has(x, y1))
                             {
-                                grid.Add(x, y1, '#');
+                                grid.Set(x, y1, '#');
                             }
                         }
                     }
@@ -120,7 +120,7 @@ namespace Y2022.Day14
             var maxX = grid.MaxX + 10000;
             for (var x = minX; x < maxX; x++)
             {
-                grid.Add(x, yFloor, '#');
+                grid.Set(x, yFloor, '#');
             }
 
             return grid;

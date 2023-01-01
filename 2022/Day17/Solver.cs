@@ -111,7 +111,7 @@ namespace Y2022.Day17
                 {
                     foreach (var cell in rock.Cells)
                     {
-                        chamber.Add(rock.BottomLeft.X + cell.X, rock.BottomLeft.Y + cell.Y, '#');
+                        chamber.Set(rock.BottomLeft.X + cell.X, rock.BottomLeft.Y + cell.Y, '#');
                     }
                     break;
                 }
@@ -172,7 +172,7 @@ namespace Y2022.Day17
             {
                 foreach (var cell in rock.Cells)
                 {
-                    chamber.Add(rock.BottomLeft.X + cell.X, rock.BottomLeft.Y + cell.Y, '@');
+                    chamber.Set(rock.BottomLeft.X + cell.X, rock.BottomLeft.Y + cell.Y, '@');
                 }
             }
             Console.WriteLine(chamber.ToStringUpsideDown());
@@ -190,7 +190,7 @@ namespace Y2022.Day17
             var chamber = new InfiniteGrid<char>('.');
             for (var i = 0; i < width; i++)
             {
-                chamber.Add(i, -1, '-');
+                chamber.Set(i, -1, '-');
             }
             return chamber;
         }

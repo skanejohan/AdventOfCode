@@ -18,9 +18,9 @@ namespace CSharpLib.DataStructures
             this.def = def;
         }
 
-        public void Add(int x, int y, T value)
+        public void Set(int x, int y, T value)
         {
-            grid.Add((x, y), value);
+            grid[(x, y)] = value;
             minX = x < minX ? x : minX;
             minY = y < minY ? y : minY;
             maxX = x > maxX ? x : maxX;
