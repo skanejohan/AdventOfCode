@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CSharpLib.DataStructures
 {
-    public class InfiniteGrid<T> : IEnumerable<(int Row, int Col, T Value)>
+    public class InfiniteGrid<T> : IEnumerable<(int X, int Y, T Value)>
     {
         public int MinX => GetMinX();
         public int MinY => GetMinY();
@@ -115,7 +115,7 @@ namespace CSharpLib.DataStructures
             return maxY.Value;
         }
 
-        public IEnumerator<(int Row, int Col, T Value)> GetEnumerator()
+        public IEnumerator<(int X, int Y, T Value)> GetEnumerator()
         {
             foreach (var kv in grid)
             {

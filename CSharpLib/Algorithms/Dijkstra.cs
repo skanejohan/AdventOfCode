@@ -6,6 +6,11 @@ namespace CSharpLib.Algorithms
 {
     public class Dijkstra<T> where T : notnull, IEquatable<T>
     {
+        public Dijkstra(Func<T, bool> targetIsReached = null)
+        {
+            this.targetIsReached = targetIsReached;
+        }
+
         public IEnumerable<(T T, long Distance)> ShortestPath()
         {
             var cell = target;
@@ -24,6 +29,10 @@ namespace CSharpLib.Algorithms
 
         public long Solve(T start, T target, Func<T, IEnumerable<(T, long)>> transformer)
         {
+            if (targetIsReached == null)
+            {
+                targetIsReached = c => c.Equals(target);
+            }
             edges.Clear();
             edges[start] = (start, 0);
             var visited = new HashSet<T>();
@@ -41,11 +50,10 @@ namespace CSharpLib.Algorithms
                     var currentCost = dist[current];
 
                     visited.Add(current);
-                    if (current.Equals(target))
+                    if (targetIsReached(current))
                     {
-                        break;
+                        return currentCost;
                     }
-
 
                     foreach (var (next, cost) in transformer(current))
                     {
@@ -65,6 +73,7 @@ namespace CSharpLib.Algorithms
         }
 
         private readonly Dictionary<T, (T, long)> edges = new Dictionary<T, (T, long)>();
+        private Func<T, bool> targetIsReached;
         private T start, target;
         private long cost;
     }
