@@ -58,7 +58,7 @@ namespace AdventOfCode
                 Verifier.Verify(921, Y2022.Day23.Solver.Part2(), "day 23 part 2");
                 Verifier.Verify(308, Y2022.Day24.Solver.Part1(), "day 24 part 1");
                 Verifier.Verify(908, Y2022.Day24.Solver.Part2(), "day 24 part 2");
-                Verifier.Verify(0, Y2022.Day25.Solver.Part1(), "day 25 part 1");
+                Verifier.Verify("2---0-1-2=0=22=2-011", Y2022.Day25.Solver.Part1(), "day 25 part 1");
                 Console.WriteLine("All tests for 2022 OK");
             }
             catch (Exception e)
