@@ -1,4 +1,4 @@
-﻿namespace Y2024.Day07;
+﻿namespace Y20xx.Day07;
 
 public static class Solver
 {
