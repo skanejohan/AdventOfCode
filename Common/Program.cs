@@ -10,7 +10,8 @@
             //Runner2020.TestAll();
             //Runner2021.TestAll();
             //Runner2021_CS.TestAll();
-            Runner2022.TestAll();
+            //Runner2022.TestAll();
+            Runner2024.TestAll();
         }
     }
 }

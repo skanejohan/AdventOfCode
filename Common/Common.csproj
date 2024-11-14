@@ -13,6 +13,7 @@
     <ProjectReference Include="..\2021\2021.fsproj" />
     <ProjectReference Include="..\2021_CS\2021_CS.csproj" />
     <ProjectReference Include="..\2022\Y2022.csproj" />
+    <ProjectReference Include="..\2024\Y2024.csproj" />
   </ItemGroup>
 
 </Project>
