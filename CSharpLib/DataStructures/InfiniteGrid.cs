@@ -12,7 +12,9 @@ namespace CSharpLib.DataStructures
         public int MaxY => GetMaxY();
         public int NoOfCellsSet => grid.Count;
 
+#pragma warning disable CS8601 // Possible null reference assignment.
         public InfiniteGrid(T def = default)
+#pragma warning restore CS8601 // Possible null reference assignment.
         {
             grid = new Dictionary<(int, int), T>();
             this.def = def;
@@ -43,7 +45,9 @@ namespace CSharpLib.DataStructures
 
         public bool TryGet(int x, int y, out T value)
         {
+#pragma warning disable CS8601 // Possible null reference assignment.
             return grid.TryGetValue((x, y), out value);
+#pragma warning restore CS8601 // Possible null reference assignment.
         }
 
         public bool Has(int x, int y)
