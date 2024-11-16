@@ -19,7 +19,7 @@ namespace CSharpLib
             path = Path.Combine(Directory.GetCurrentDirectory(), $"..\\..\\..\\..\\{year}\\Day{day:D2}\\");
         }
 
-        public IEnumerable<string> ReadStrings(string fileName)
+        public IEnumerable<string> ReadStrings(string fileName = "Data.txt")
         {
             return File.ReadLines($"{path}\\{fileName}");
         }
