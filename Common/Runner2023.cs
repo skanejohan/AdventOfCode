@@ -12,8 +12,8 @@ public static class Runner2023
             Console.WriteLine("Running tests for 2023");
             Verifier.Verify(54450, Y2023.Day01.Solver.Part1(), "day 01 part 1");
             Verifier.Verify(54265, Y2023.Day01.Solver.Part2(), "day 01 part 2");
-            Verifier.Verify(0, Y2023.Day02.Solver.Part1(), "day 02 part 1");
-            Verifier.Verify(0, Y2023.Day02.Solver.Part2(), "day 02 part 2");
+            Verifier.Verify(2771, Y2023.Day02.Solver.Part1(), "day 02 part 1");
+            Verifier.Verify(70924, Y2023.Day02.Solver.Part2(), "day 02 part 2");
             Verifier.Verify(0, Y2023.Day03.Solver.Part1(), "day 03 part 1");
             Verifier.Verify(0, Y2023.Day03.Solver.Part2(), "day 03 part 2");
             Verifier.Verify(0, Y2023.Day04.Solver.Part1(), "day 04 part 1");
