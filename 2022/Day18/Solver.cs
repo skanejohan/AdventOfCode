@@ -36,7 +36,7 @@ namespace Y2022.Day18
                         {
                             try
                             {
-                                new Dijkstra<(int, int, int)>().Solve((x, y, z), goal, FindNeighbors);
+                                new DijkstraV1<(int, int, int)>().Solve((x, y, z), goal, FindNeighbors);
                             }
                             catch
                             {

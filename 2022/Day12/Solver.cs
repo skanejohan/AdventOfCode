@@ -13,7 +13,7 @@ namespace Y2022.Day12
         public static long Part1()
         {
             LoadData("data.txt");
-            return new Dijkstra<(int, int)>().Solve(start, goal, FindNeighbors);
+            return new DijkstraV1<(int, int)>().Solve(start, goal, FindNeighbors);
         }
 
         public static long Part2()
@@ -24,7 +24,7 @@ namespace Y2022.Day12
             {
                 try
                 {
-                    var distance = new Dijkstra<(int, int)>().Solve(startingPoint, goal, FindNeighbors);
+                    var distance = new DijkstraV1<(int, int)>().Solve(startingPoint, goal, FindNeighbors);
                     minDistance = Math.Min(distance, minDistance);
                 }
                 catch

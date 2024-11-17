@@ -8,7 +8,7 @@ namespace _2021_CS.Day23
         public static long Part1()
         {
             var burrowTransformer = new BurrowTransformer(false);
-            var dijkstra = new Dijkstra<string>();
+            var dijkstra = new DijkstraV1<string>();
             return dijkstra.Solve(
                 ".......BC..BA..DA..DC..", 
                 ".......AA..BB..CC..DD..", 
@@ -18,7 +18,7 @@ namespace _2021_CS.Day23
         public static long Part2()
         {
             var burrowTransformer = new BurrowTransformer(true);
-            var dijkstra = new Dijkstra<string>();
+            var dijkstra = new DijkstraV1<string>();
             return dijkstra.Solve(
                 ".......BDDCBCBADBAADACC",
                 ".......AAAABBBBCCCCDDDD",
@@ -38,7 +38,7 @@ namespace _2021_CS.Day23
                 .Replace('u', burrow[14]).Replace('v', burrow[18]).Replace('w', burrow[22]);
         }
 
-        private static void DumpPath(CSharpLib.Algorithms.Dijkstra<string> dijkstra, bool large)
+        private static void DumpPath(CSharpLib.Algorithms.DijkstraV1<string> dijkstra, bool large)
         {
             foreach (var (T, Distance) in dijkstra.ShortestPath())
             {
