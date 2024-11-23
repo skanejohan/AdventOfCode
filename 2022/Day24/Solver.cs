@@ -15,7 +15,7 @@ namespace Y2022.Day24
             PrepareData("data.txt");
 
             bool targetReached((int x, int y, int s) cell) => cell.y == blizzardsHeight + 1;
-            var dijkstra = new Dijkstra<(int X, int Y, int Step)>(targetReached);
+            var dijkstra = new DijkstraV1<(int X, int Y, int Step)>(targetReached);
             return dijkstra.Solve((1, 0, 0), (blizzardsWidth, blizzardsHeight + 1, 0), CalculateNeighbors);
         }
 
@@ -31,13 +31,13 @@ namespace Y2022.Day24
             bool originReached((int x, int y, int s) cell) => cell.y == originY;
             bool targetReached((int x, int y, int s) cell) => cell.y == targetY;
 
-            var steps1 = new Dijkstra<(int X, int Y, int Step)>(targetReached)
+            var steps1 = new DijkstraV1<(int X, int Y, int Step)>(targetReached)
                 .Solve((originX, originY, 0), (targetX, targetY, 0), CalculateNeighbors);
 
-            var steps2 = new Dijkstra<(int X, int Y, int Step)>(originReached)
+            var steps2 = new DijkstraV1<(int X, int Y, int Step)>(originReached)
                 .Solve((targetX, targetY, (int)steps1), (originX, originY, 0), CalculateNeighbors);
 
-            var steps3 = new Dijkstra<(int X, int Y, int Step)>(targetReached)
+            var steps3 = new DijkstraV1<(int X, int Y, int Step)>(targetReached)
                 .Solve((originX, originY, (int)(steps1 + steps2)), (targetX, targetY, 0), CalculateNeighbors);
 
             return steps1 + steps2 + steps3;

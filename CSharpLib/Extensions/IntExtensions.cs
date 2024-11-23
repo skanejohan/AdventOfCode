@@ -6,5 +6,20 @@
         {
             return (n - 1) % around + 1;
         }
+
+        public static int WithBitSet(this int n, int bit)
+        {
+            return n |= 1 << bit;
+        }
+
+        public static bool IsBitSet(this int n, int bit)
+        {
+            return ((n >> bit) & 1) != 0;
+        }
+
+        public static int WithBitCleared(this int n, int bit)
+        {
+            return n & ~(1 << bit);
+        }
     }
 }
