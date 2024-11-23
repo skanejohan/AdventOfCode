@@ -40,7 +40,38 @@ public static class Day18
 
     public static long Part2()
     {
-        return 0;
+        var (R1, R2, R3, R4) = LoadDataForPartTwo();
+        CalculateAllPaths(R1, R2, R3, R4);
+        return Dijkstra<((int, int), (int, int), (int, int), (int, int), int)>.Solve((R1, R2, R3, R4, 0), GetNeighbors, x => x.Item5 == Math.Pow(2, highestKeyIndex + 1) - 1).TotalCost;
+
+        static IEnumerable<(((int, int), (int, int), (int, int), (int, int), int), long)> GetNeighbors(((int, int) Pos1, (int, int) Pos2, (int, int) Pos3, (int, int) Pos4, int Keys) current)
+        {
+            foreach(var pos in new[] { current.Pos1, current.Pos2, current.Pos3, current.Pos4 })
+            {
+                foreach (var kvp in allPaths[pos])
+                {
+                    var target = kvp.Key;
+                    var r1 = pos == current.Pos1 ? target : current.Pos1;
+                    var r2 = pos == current.Pos2 ? target : current.Pos2;
+                    var r3 = pos == current.Pos3 ? target : current.Pos3;
+                    var r4 = pos == current.Pos4 ? target : current.Pos4;
+                    foreach (var (Cost, RequiredKeys) in kvp.Value)
+                    {
+                        if (WeHaveAllRequiredKeys(current.Keys, RequiredKeys))
+                        {
+                            var keyIndex = keyIndexByPosition[target];
+                            var keys = current.Keys.WithBitSet(keyIndex);
+                            yield return ((r1, r2, r3, r4, keys), Cost);
+                        }
+                    }
+                }
+            }
+
+            static bool WeHaveAllRequiredKeys(int carried, int required)
+            {
+                return (required & ~carried) == 0;
+            }
+        }
     }
 
     /// <summary>
@@ -97,6 +128,21 @@ public static class Day18
         return robot;
     }
 
+    private static ((int, int) Robot1, (int, int) Robot2, (int, int) Robot3, (int, int) Robot4) LoadDataForPartTwo()
+    {
+        var robot = LoadData();
+        cells.Remove((robot.Row - 1, robot.Col));
+        cells.Remove((robot.Row + 1, robot.Col));
+        cells.Remove((robot.Row, robot.Col - 1));
+        cells.Remove((robot.Row, robot.Col + 1));
+        cells.Remove(robot);
+        var robot1 = (robot.Row - 1, robot.Col - 1);
+        var robot2 = (robot.Row - 1, robot.Col + 1);
+        var robot3 = (robot.Row + 1, robot.Col - 1);
+        var robot4 = (robot.Row + 1, robot.Col + 1);
+        return (robot1, robot2, robot3, robot4);
+    }
+
     /// <summary>
     /// Populate allPaths.
     /// </summary>
@@ -131,7 +177,7 @@ public static class Day18
                             }
                         }
                         AddToAllPaths(pos1, pos2, (path.Count - 1, requiredKeys));
-                        if (pos1 != robots[0]) // TODO or any other robot
+                        if (!robots.Contains(pos1))
                         {
                             AddToAllPaths(pos2, pos1, (path.Count - 1, requiredKeys));
                         }
