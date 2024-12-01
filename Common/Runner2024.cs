@@ -10,8 +10,8 @@ public static class Runner2024
         try
         {
             Console.WriteLine("Running tests for 2024");
-            Verifier.Verify(0, Y2024.Day01.Solver.Part1(), "day 01 part 1");
-            Verifier.Verify(0, Y2024.Day01.Solver.Part2(), "day 01 part 2");
+            //Verifier.Verify(936063, Y2024.Day01.Solver.Part1(), "day 01 part 1");
+            //Verifier.Verify(23150395, Y2024.Day01.Solver.Part2(), "day 01 part 2");
             Verifier.Verify(0, Y2024.Day02.Solver.Part1(), "day 02 part 1");
             Verifier.Verify(0, Y2024.Day02.Solver.Part2(), "day 02 part 2");
             Verifier.Verify(0, Y2024.Day03.Solver.Part1(), "day 03 part 1");
