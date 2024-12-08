@@ -1,9 +1,7 @@
 ﻿using CSharpLib;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Net.NetworkInformation;
 
 namespace Y2024.Day06;
 
@@ -11,50 +9,43 @@ public static class Solver
 {
     public static long Part1()
     {
-        var state = CalcStateForPartOne("Data.txt");
+        var (env, state) = LoadData("Data.txt");
+        (_, state) = Calculate(env, state);
         return state.Visited.Count - 1;
     }
 
     public static long Part2()
     {
-        var interestingPositions = CalcStateForPartOne("Data.txt").Visited;
-
         var (env, state) = LoadData("Data.txt");
-        var n = 0;
-        var m = 0;
-        foreach(var extraObstacle in interestingPositions)
+        var (_, stateFromPart1) = Calculate(env, state);
+        var environmentsWithoutLoop = 0;
+        foreach (var extraObstacle in stateFromPart1.Visited)
         {
-            m++;
-            var s = new State(state.Pos, state.Dir, state.Visited);
+            var s = new State(state.Pos, state.Dir, []);
             var e = new Env(new HashSet<(int Row, int Col)>(env.Obstacles) { extraObstacle }, env.MaxRow, env.MaxCol);
-
-            var moves = 0;
-            var maxMoves = e.MaxCol * e.MaxRow;
-            while (InMap(e, s) && moves < maxMoves)
+            var (loop, _) = Calculate(e, s);
+            if (loop)
             {
-                if (Move(e, s, out var newState))
-                {
-                    s = newState;
-                    moves++;
-                }
-                else
-                {
-                    s = Turn(s);
-                }
-            }
-            if (InMap(e, s))
-            {
-                n++;
+                environmentsWithoutLoop++;
             }
         }
-        return n;
+        return environmentsWithoutLoop;
     }
 
-    static State CalcStateForPartOne(string fileName)
+    static (bool, State) Calculate(Env env, State state)
     {
-        var (env, state) = LoadData(fileName);
+        var loop = false;
+        var visited = new HashSet<((int, int), (int, int))>();
         while (InMap(env, state))
         {
+            if (visited.Contains((state.Pos, state.Dir)))
+            {
+                loop = true;
+                break;
+            }
+
+            visited.Add((state.Pos, state.Dir));
+
             if (Move(env, state, out var newState))
             {
                 state = newState;
@@ -64,7 +55,7 @@ public static class Solver
                 state = Turn(state);
             }
         }
-        return state;
+        return (loop, state);
     }
 
     static bool Move(Env env, State state, out State newState)
