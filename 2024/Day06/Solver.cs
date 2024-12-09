@@ -9,22 +9,34 @@ public static class Solver
 {
     public static long Part1()
     {
-        var (env, state) = LoadData("Data.txt");
-        (_, state) = Calculate(env, state);
-        return state.Visited.Count - 1;
+        LoadData("Data.txt");
+        path = [];
+        pos = initialPos;
+        dir = (-1, 0);
+        Calculate();
+        return UniqueVisitedPositions().Count;
     }
 
     public static long Part2()
     {
-        var (env, state) = LoadData("Data.txt");
-        var (_, stateFromPart1) = Calculate(env, state);
+        Part1();
+        var previousPath = new List<((int Row, int Col) Pos, (int DRow, int DCol) Dir)>(path);
+        var extraObstacles = UniqueVisitedPositions();
+
         var environmentsWithoutLoop = 0;
-        foreach (var extraObstacle in stateFromPart1.Visited)
+        foreach (var o in extraObstacles)
         {
-            var s = new State(state.Pos, state.Dir, []);
-            var e = new Env(new HashSet<(int Row, int Col)>(env.Obstacles) { extraObstacle }, env.MaxRow, env.MaxCol);
-            var (loop, _) = Calculate(e, s);
-            if (loop)
+            path = [];
+            extraObstacle = o;
+            for (int i = previousPath.Count - 1; i > 0; i--)
+            {
+                if (previousPath[i].Pos == extraObstacle)
+                {
+                    pos = previousPath[i - 1].Pos;
+                    dir = previousPath[i - 1].Dir;
+                }
+            }
+            if (Calculate())
             {
                 environmentsWithoutLoop++;
             }
@@ -32,67 +44,68 @@ public static class Solver
         return environmentsWithoutLoop;
     }
 
-    static (bool, State) Calculate(Env env, State state)
+    static bool Calculate()
     {
+        var visited = new HashSet<((int Row, int Col), (int DRow, int DCol))>();
+
         var loop = false;
-        var visited = new HashSet<((int, int), (int, int))>();
-        while (InMap(env, state))
+        while (InMap())
         {
-            if (visited.Contains((state.Pos, state.Dir)))
+            if (visited.Contains((pos, dir)))
             {
                 loop = true;
                 break;
             }
 
-            visited.Add((state.Pos, state.Dir));
+            visited.Add((pos, dir));
 
-            if (Move(env, state, out var newState))
+            if (!Move())
             {
-                state = newState;
+                Turn();
             }
-            else
-            {
-                state = Turn(state);
-            }
+
+            path.Add((pos, dir));
         }
-        return (loop, state);
+        return loop;
     }
 
-    static bool Move(Env env, State state, out State newState)
+    static HashSet<(int Row, int Col)> UniqueVisitedPositions()
     {
-        var newPos = (state.Pos.Row + state.Dir.DRow, state.Pos.Col + state.Dir.DCol);
-        if (env.Obstacles.Contains(newPos))
+        return path.Select(x => x.Pos).ToHashSet();
+    }
+
+    static bool Move()
+    {
+        var newPos = (pos.Row + dir.DRow, pos.Col + dir.DCol);
+        if (obstacles.Contains(newPos) || extraObstacle == newPos)
         {
-            newState = state;
             return false;
         }
-        newState = state with { Pos = newPos, Visited = new HashSet<(int Row, int Col)>(state.Visited) { newPos } };
+        pos = newPos;
         return true;
     }
 
-    static State Turn(State state)
+    static void Turn()
     {
-        return state.Dir switch
+        dir = dir switch
         {
-            (-1, +0) => state with { Dir = (+0, +1) },
-            (+0, +1) => state with { Dir = (+1, +0) },
-            (+1, +0) => state with { Dir = (+0, -1) },
-            (+0, -1) => state with { Dir = (-1, +0) },
-            _ => throw new System.Exception()
+            (-1, +0) => (+0, +1),
+            (+0, +1) => (+1, +0),
+            (+1, +0) => (+0, -1),
+            (+0, -1) => (-1, +0),
+            _ => throw new Exception()
         };
     }
 
-    static bool InMap(Env env, State state)
+    static bool InMap()
     {
-        return state.Pos.Row >= 0 && state.Pos.Row <= env.MaxRow && state.Pos.Col >= 0 && state.Pos.Col <= env.MaxCol;
+        return pos.Row >= 0 && pos.Row <= maxRow && pos.Col >= 0 && pos.Col <= maxCol;
     }
 
-    static (Env, State) LoadData(string fileName)
+    static void LoadData(string fileName)
     {
-        (int Row, int Col) pos = (0, 0);
-        HashSet<(int Row, int Col)> obstacles = [];
-
         var rows = new DataLoader(2024, 6).ReadEnumerableChars(fileName);
+        obstacles = [];
 
         var r = 0;
         foreach(var row in rows)
@@ -106,16 +119,26 @@ public static class Solver
                 }
                 if (col == '^')
                 {
-                    pos = (r, c);
+                    initialPos = (r, c);
                 }
                 c++;
             }
             r++;
         }
 
-        return (new Env(obstacles, rows.Count() - 1, rows.First().Count() - 1), new State(pos, (-1, 0), [pos]));
+        maxRow = rows.Count() - 1;
+        maxCol = rows.First().Count() - 1;
     }
 
-    record Env(HashSet<(int Row, int Col)> Obstacles, int MaxRow, int MaxCol);
-    record State((int Row, int Col) Pos, (int DRow, int DCol) Dir, HashSet<(int Row, int Col)> Visited);
+    // Will change during calculation
+    static (int Row, int Col) pos;
+    static (int DRow, int DCol) dir;
+    static (int Row, int Col)? extraObstacle;
+    static List<((int Row, int Col) Pos, (int DRow, int DCol) Dir)> path = [];
+
+    // Set by LoadData and then not changed
+    static HashSet<(int Row, int Col)> obstacles = [];
+    static (int Row, int Col) initialPos;
+    static int maxRow;
+    static int maxCol;
 }
