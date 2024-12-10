@@ -108,6 +108,11 @@ namespace CSharpLib.DataStructures
             }
         }
 
+        public IEnumerable<(int Row, int Col, T Value)> GetNeighbors4((int Row, int Col) pos)
+        {
+            return GetNeighbors4(pos.Row, pos.Col);
+        }
+
         /// <summary>
         /// Get up to 8 neighbors of a cell
         /// </summary>
