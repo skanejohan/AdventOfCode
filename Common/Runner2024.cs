@@ -30,8 +30,8 @@ public static class Runner2024
             //Verifier.Verify(6431472344710, Y2024.Day09.Solver.Part2(), "day 09 part 2");
             //Verifier.Verify(582, Y2024.Day10.Solver.Part1(), "day 10 part 1");
             //Verifier.Verify(1302, Y2024.Day10.Solver.Part2(), "day 10 part 2");
-            Verifier.Verify(0, Y2024.Day11.Solver.Part1(), "day 11 part 1");
-            Verifier.Verify(0, Y2024.Day11.Solver.Part2(), "day 11 part 2");
+            //Verifier.Verify(183435, Y2024.Day11.Solver.Part1(), "day 11 part 1");
+            //Verifier.Verify(218279375708592, Y2024.Day11.Solver.Part2(), "day 11 part 2");
             Verifier.Verify(0, Y2024.Day12.Solver.Part1(), "day 12 part 1");
             Verifier.Verify(0, Y2024.Day12.Solver.Part2(), "day 12 part 2");
             Verifier.Verify(0, Y2024.Day13.Solver.Part1(), "day 13 part 1");
