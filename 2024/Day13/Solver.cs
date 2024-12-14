@@ -1,5 +1,6 @@
 ﻿using CSharpLib;
 using CSharpLib.Extensions;
+using CSharpLib.Utils;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,13 +10,13 @@ public static class Solver
 {
     public static long Part1()
     {
-        var cost = 0;
+        var cost = 0L;
         var equationSystems = LoadEquationSystems("Data.txt").ToList();
         foreach(var (AX, BX, RX, AY, BY, RY) in equationSystems)
         {
-            if (TryGetValues(AX, BX, RX, AY, BY, RY, out var res))
+            if (MathUtils.TrySolve(AX, BX, RX, AY, BY, RY, out var res))
             {
-                cost += res.A * 3 + res.B;
+                cost += res.X * 3 + res.Y;
             }
         }
         return cost;
@@ -23,31 +24,16 @@ public static class Solver
 
     public static long Part2()
     {
-        return 0;
-    }
-
-    static bool TryGetValues(int aX, int bX, int rX, int aY, int bY, int rY, out (int A, int B) result)
-    {
-        // A * aX + B * bX = rX
-        // A * aY + B * bY = rY
-        //
-        // A = ((rX-rY) - (bX-bY) * B) / (aX - aY)
-        for (var b = 1; b <= 100; b++)
+        var cost = 0L;
+        var equationSystems = LoadEquationSystems("Data.txt").ToList();
+        foreach (var (AX, BX, RX, AY, BY, RY) in equationSystems)
         {
-            var numerator = rX - rY - (bX - bY) * b;
-            var denominator = aX - aY;
-            if (numerator % denominator == 0)
+            if (MathUtils.TrySolve(AX, BX, 10000000000000 + RX, AY, BY, 10000000000000 + RY, out var res))
             {
-                var a = numerator / denominator;
-                if (a * aX + b * bX == rX && a * aY + b * bY == rY)
-                {
-                    result = (a, b);
-                    return true;
-                }
+                cost += res.X * 3 + res.Y;
             }
         }
-        result = (0, 0);
-        return false;
+        return cost;
     }
 
     static IEnumerable<(int AX, int BX, int RX, int AY, int BY, int RY)> LoadEquationSystems(string fileName)
