@@ -1,7 +1,9 @@
 ﻿using CSharpLib;
 using CSharpLib.Algorithms;
 using CSharpLib.DataStructures;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Y2024.Day16;
 
@@ -10,15 +12,11 @@ public static class Solver
     public static long Part1()
     {
         LoadData("Data.txt");
-        return SolveFrom((StartPos, (0, 1))).TotalCost;
+        return Solve((StartPos, (0, 1)), p => p.Pos == EndPos)!.TotalCost;
     }
 
     public static long Part2()
     {
-        LoadData("Data.txt");
-
-        var solution = SolveFrom((StartPos, (0, 1))).TotalCost;
-
         // Idea: for each cell in solution, calculate its cost and add to a dictionary from state to cost.
         // This will by definition be the lowest cost for the state in question.
         // Place the solution path on a stack.
@@ -34,12 +32,74 @@ public static class Solver
         //     Create a new state, rotated counterclockwise
         //     repeat as above
 
+        /*
+        LoadData("TestData.txt");
+
+        var startState = (StartPos, (0, 1));
+        Dictionary<((int, int), (int, int)), long> costs = [];
+        Stack<List<((int Row, int Col) Pos, (int DeltaRow, int DeltaCol) Dir)>> pathsToProcess = [];
+
+        var solution = Solve(startState, p => p.Pos == EndPos);
+        HandleSolution(solution);        
+
+        while(pathsToProcess.TryPop(out var path))
+        {
+            foreach(var (Pos, Dir) in path)
+            {
+                var newNode = (Clockwise[Pos], Dir);
+                if (!costs.ContainsKey(newNode))
+                {
+                    var newSolution = Solve(startState, p => p.Pos == newNode.Item1 && p.Dir == newNode.Dir);
+                    if (newSolution is not null)
+                    {
+                        costs[newNode] = newSolution.TotalCost;
+                        HandleSolution(newSolution);
+                    }
+                }
+                newNode = (CounterClockwise[Pos], Dir);
+                if (!costs.ContainsKey(newNode))
+                {
+                    var newSolution = Solve(startState, p => p.Pos == newNode.Item1 && p.Dir == newNode.Dir);
+                    if (newSolution is not null)
+                    {
+                        costs[newNode] = newSolution.TotalCost;
+                        HandleSolution(newSolution);
+                    }
+                }
+            }
+        }
+        */
+
         return 0L;
+
+        /*
+        void HandleSolution(Solution<((int, int), (int, int))>? solution)
+        {
+            if (solution is null)
+            {
+                return;
+            }
+            foreach(var kvp in solution.Path)
+            {
+                costs[kvp.Item1] = kvp.Item2;
+            }
+            pathsToProcess.Push(solution.Path.Select(p => p.Item1).ToList());
+        }
+        */
     }
 
-    static Solution<((int Row, int Col) Pos, (int Row, int Col) Dir)> SolveFrom(((int Row, int Col) Pos, (int Row, int Col) Dir) start)
+    static Solution<((int Row, int Col) Pos, (int Row, int Col) Dir)>? Solve(
+        ((int Row, int Col) Pos, (int Row, int Col) Dir) startState, 
+        Func<((int Row, int Col) Pos, (int Row, int Col) Dir), bool> isGoal)
     {
-        return Dijkstra<((int Row, int Col), (int Row, int Col))>.Solve(start, GetNeighbors, pos => pos.Item1 == EndPos);
+        try
+        {
+            return Dijkstra<((int Row, int Col), (int Row, int Col))>.Solve(startState, GetNeighbors, isGoal);
+        }
+        catch
+        {
+            return null;
+        }
 
         static IEnumerable<(((int, int), (int, int)), long)> GetNeighbors(((int Row, int Col) Pos, (int Row, int Col) Dir) state)
         {
