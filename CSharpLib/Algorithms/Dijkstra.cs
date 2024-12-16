@@ -1,5 +1,4 @@
-﻿using Priority_Queue;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +10,7 @@ public static class Dijkstra<T> where T : notnull, IEquatable<T>
     public static Solution<T> SolveEx(T start, Func<T, IEnumerable<(T, long)>> calculateEdgesToNeighbors, Func<T, List<(T, long)>, long, bool> isTarget)
     {
         var visitedNodes = new HashSet<object>();
-        var nodesToVisit = new SimplePriorityQueue<T, long>();
+        var nodesToVisit = new PriorityQueue<T, long>();
         var lowestCostToDestinationNode = new Dictionary<T, long>()
         {
             [start] = 0
@@ -66,7 +65,7 @@ public static class Dijkstra<T> where T : notnull, IEquatable<T>
     public static Solution<T> Solve(T start, Func<T, IEnumerable<(T, long)>> calculateEdgesToNeighbors, Func<T, bool> isTarget)
     {
         var visitedNodes = new HashSet<object>();
-        var nodesToVisit = new SimplePriorityQueue<T, long>();
+        var nodesToVisit = new PriorityQueue<T, long>();
         var lowestCostToDestinationNode = new Dictionary<T, long>() 
         { 
             [start] = 0 

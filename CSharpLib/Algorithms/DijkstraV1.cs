@@ -1,5 +1,4 @@
-﻿using Priority_Queue;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace CSharpLib.Algorithms
@@ -36,7 +35,7 @@ namespace CSharpLib.Algorithms
             edges.Clear();
             edges[start] = (start, 0);
             var visited = new HashSet<T>();
-            var queue = new SimplePriorityQueue<T, long>();
+            var queue = new PriorityQueue<T, long>();
             var dist = new Dictionary<T, long>() { [start] = 0 };
             this.target = target;
             this.start = start;
