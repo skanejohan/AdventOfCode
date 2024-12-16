@@ -1,11 +1,7 @@
 ﻿using CSharpLib;
 using CSharpLib.Algorithms;
 using CSharpLib.DataStructures;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.WebSockets;
 
 namespace Y2024.Day16;
 
@@ -13,104 +9,53 @@ public static class Solver
 {
     public static long Part1()
     {
-        var (startPos, endPos) = LoadData("Data.txt");
-        var start = (startPos, (0, 1), );
-        return Dijkstra<((int Row, int Col), (int Row, int Col))>.Solve(start, GetNeighbors, pos => pos.Item1 == endPos).TotalCost;
+        LoadData("Data.txt");
+        return SolveFrom((StartPos, (0, 1))).TotalCost;
     }
-
-    record Pos(int Row, int Col);
-    record Dir(int Row, int Col);
-    record State(Pos Pos, Dir Dir, List<(Pos, Dir)> Path);
 
     public static long Part2()
     {
-        var (startPos, endPos) = LoadData("TestData.txt");
-        var start = (startPos, (0, 1));
+        LoadData("Data.txt");
 
-        Dijkstra<((int Row, int Col), (int Row, int Col), List<((int Row, int Col), (int Row, int Col))>)>.Solve(
+        var solution = SolveFrom((StartPos, (0, 1))).TotalCost;
 
+        // Idea: for each cell in solution, calculate its cost and add to a dictionary from state to cost.
+        // This will by definition be the lowest cost for the state in question.
+        // Place the solution path on a stack.
+        // While the stack is not empty
+        //   Pop the top path.
+        //   For each of its nodes
+        //     Create a new state, rotated clockwise
+        //     If the new state is not in the cost dictionary 
+        //       Calculate the shortest path from the start node to this state, just to get the cost
+        //       Add it to the cost dictionary
+        //       Calculate the shortest path from the state to the end state
+        //       If a solution exists, update the cost dictionary and push the solution to the stack
+        //     Create a new state, rotated counterclockwise
+        //     repeat as above
 
+        return 0L;
+    }
 
-        var n = 0;
-        var targetCost = Dijkstra<((int Row, int Col), (int Row, int Col))>.SolveEx(start, GetNeighbors, End).TotalCost;
+    static Solution<((int Row, int Col) Pos, (int Row, int Col) Dir)> SolveFrom(((int Row, int Col) Pos, (int Row, int Col) Dir) start)
+    {
+        return Dijkstra<((int Row, int Col), (int Row, int Col))>.Solve(start, GetNeighbors, pos => pos.Item1 == EndPos);
 
-        return targetCost;
-
-        bool End(((int, int), (int, int)) pos, List<(((int, int), (int, int)), long)> path, long cost)
+        static IEnumerable<(((int, int), (int, int)), long)> GetNeighbors(((int Row, int Col) Pos, (int Row, int Col) Dir) state)
         {
-            if (pos.Item1 != endPos)
+            yield return ((state.Pos, Clockwise[state.Dir]), 1000L);
+            yield return ((state.Pos, CounterClockwise[state.Dir]), 1000L);
+            var targetPos = (state.Pos.Row + state.Dir.Row, state.Pos.Col + state.Dir.Col);
+            if (!Walls.Contains(targetPos))
             {
-                return false;
+                yield return ((targetPos, state.Dir), 1L);
             }
-            n++;
-            return n == 2 && cost == 7036;
-        }
-
-        //var targetCost = Dijkstra<((int Row, int Col), (int Row, int Col))>.Solve(start, getNeighbors, pos => pos.Item1 == endPos).TotalCost;
-        //List<List<(((int, int), (int, int)), long)>> solutions = [];
-        //HashSet<(int, int)> visitedPositions = [];
-        //var allFound = false;
-        //while(!allFound)
-        //{
-        //    try 
-        //    {
-        //        var solution = Dijkstra<((int Row, int Col), (int Row, int Col))>
-        //            .SolveEx(start, getNeighbors, (pos, path, cost) => pos.Item1 == endPos && cost == targetCost && !solutionAlreadyFound(path));
-        //        solutions.Add(solution.Path);
-        //        var positionsInThisSolution = solution.Path.Select(n => n.Item1.Item1);
-        //        visitedPositions.UnionWith(positionsInThisSolution);
-        //    }
-        //    catch
-        //    {
-        //        allFound = true;
-        //    }
-        //}
-        //return visitedPositions.Count;
-
-        //bool solutionAlreadyFound(List<(((int, int), (int, int)), long)> solution)
-        //{
-        //    return solutions.Any(s => s.SequenceEqual(solution));
-        //}
-    }
-
-    private static IEnumerable<(((int, int), (int, int)), long)> GetNeighbors(((int Row, int Col) Pos, (int Row, int Col) Dir) state)
-    {
-        yield return ((state.Pos, Clockwise(state.Dir)), 1000L);
-        yield return ((state.Pos, CounterClockwise(state.Dir)), 1000L);
-        var targetPos = (state.Pos.Row + state.Dir.Row, state.Pos.Col + state.Dir.Col);
-        if (!Walls.Contains(targetPos))
-        {
-            yield return ((targetPos, state.Dir), 1L);
         }
     }
 
-    static (int, int) Clockwise((int, int) dir)
-    {
-        return dir switch
-        {
-            (0, 1) => (1, 0),
-            (1, 0) => (0, -1),
-            (0, -1) => (-1, 0),
-            _ => (0, 1)
-        };
-    }
-
-    static (int, int) CounterClockwise((int, int) dir)
-    {
-        return dir switch
-        {
-            (0, 1) => (-1, 0),
-            (-1, 0) => (0, -1),
-            (0, -1) => (1, 0),
-            _ => (0, 1)
-        };
-    }
-
-    public static ((int Row, int Col) Start, (int Row, int Col) End) LoadData(string fileName)
+    public static void LoadData(string fileName)
     {
         Walls = [];
-        (int Row, int Col) start = (0, 0);
-        (int Row, int Col) end = (0, 0);
         foreach (var (Row, Col, Value) in new Grid<char>(new DataLoader("2024", 16).ReadStrings(fileName)))
         {
             switch (Value)
@@ -119,17 +64,21 @@ public static class Solver
                     Walls.Add((Row, Col));
                     break;
                 case 'S':
-                    start = (Row, Col);
+                    StartPos = (Row, Col);
                     break;
                 case 'E':
-                    end = (Row, Col);
+                    EndPos = (Row, Col);
                     break;
                 default:
                     break;
             }
         }
-        return (start, end);
     }
 
+    static readonly Dictionary<(int, int), (int, int)> Clockwise = new() { { (0, 1), (1, 0) }, { (1, 0), (0, -1) }, { (0, -1), (-1, 0) }, { (-1, 0) , (0, 1) } };
+    static readonly Dictionary<(int, int), (int, int)> CounterClockwise = new() { { (0, 1), (-1, 0) }, { (-1, 0), (0, -1) }, { (0, -1), (1, 0) }, { (1, 0), (0, 1) } };
+
     static HashSet<(int Row, int Col)> Walls = [];
+    static (int Row, int Col) StartPos = (0, 0);
+    static (int Row, int Col) EndPos = (0, 0);
 }
