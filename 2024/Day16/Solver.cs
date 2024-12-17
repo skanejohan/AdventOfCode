@@ -24,68 +24,66 @@ public static class Solver
         //   Pop the top path.
         //   For each of its nodes
         //     Create a new state, rotated clockwise
-        //     If the new state is not in the cost dictionary 
-        //       Calculate the shortest path from the start node to this state, just to get the cost
-        //       Add it to the cost dictionary
-        //       Calculate the shortest path from the state to the end state
-        //       If a solution exists, update the cost dictionary and push the solution to the stack
-        //     Create a new state, rotated counterclockwise
-        //     repeat as above
+        //       If the new state is not in the cost dictionary 
+        //         Calculate the shortest path from the start node to this state, just to get the cost
+        //         Add it to the cost dictionary
+        //         Calculate the shortest path from this state to the end state
+        //         If a solution exists, update the cost dictionary and push both solutions to the stack
+        //     Create a new state, rotated counterclockwise and perform the same process
 
-        /*
-        LoadData("TestData.txt");
+        LoadData("data.txt");
 
         var startState = (StartPos, (0, 1));
+        HashSet<(int, int)> visited = [StartPos, EndPos];
         Dictionary<((int, int), (int, int)), long> costs = [];
         Stack<List<((int Row, int Col) Pos, (int DeltaRow, int DeltaCol) Dir)>> pathsToProcess = [];
 
         var solution = Solve(startState, p => p.Pos == EndPos);
-        HandleSolution(solution);        
+        var targetCost = solution!.TotalCost;
+        HandleSolution(solution);
 
-        while(pathsToProcess.TryPop(out var path))
+        while (pathsToProcess.TryPop(out var path))
         {
-            foreach(var (Pos, Dir) in path)
+            foreach (var (Pos, Dir) in path)
             {
-                var newNode = (Clockwise[Pos], Dir);
-                if (!costs.ContainsKey(newNode))
+                ModifyAndProcess((Pos, Clockwise[Dir]));
+                ModifyAndProcess((Pos, CounterClockwise[Dir]));
+            }
+        }
+
+        return visited.Count;
+
+        void ModifyAndProcess(((int, int) Pos, (int, int) Dir) node)
+        {
+            if (!costs.ContainsKey(node))
+            {
+                var startToThisSolution = Solve(startState, p => p.Pos == node.Pos && p.Dir == node.Dir);
+                if (startToThisSolution is not null)
                 {
-                    var newSolution = Solve(startState, p => p.Pos == newNode.Item1 && p.Dir == newNode.Dir);
-                    if (newSolution is not null)
+                    costs[node] = startToThisSolution.TotalCost;
+                    var thisToEndSolution = Solve(node, p => p.Pos == EndPos);
+                    if (thisToEndSolution is not null && startToThisSolution.TotalCost + thisToEndSolution.TotalCost == targetCost)
                     {
-                        costs[newNode] = newSolution.TotalCost;
-                        HandleSolution(newSolution);
-                    }
-                }
-                newNode = (CounterClockwise[Pos], Dir);
-                if (!costs.ContainsKey(newNode))
-                {
-                    var newSolution = Solve(startState, p => p.Pos == newNode.Item1 && p.Dir == newNode.Dir);
-                    if (newSolution is not null)
-                    {
-                        costs[newNode] = newSolution.TotalCost;
-                        HandleSolution(newSolution);
+                        HandleSolution(startToThisSolution);
+                        HandleSolution(thisToEndSolution);
                     }
                 }
             }
         }
-        */
 
-        return 0L;
-
-        /*
         void HandleSolution(Solution<((int, int), (int, int))>? solution)
         {
             if (solution is null)
             {
                 return;
             }
-            foreach(var kvp in solution.Path)
+            foreach (var kvp in solution.Path)
             {
                 costs[kvp.Item1] = kvp.Item2;
+                visited.Add(kvp.Item1.Item1);
             }
             pathsToProcess.Push(solution.Path.Select(p => p.Item1).ToList());
         }
-        */
     }
 
     static Solution<((int Row, int Col) Pos, (int Row, int Col) Dir)>? Solve(
