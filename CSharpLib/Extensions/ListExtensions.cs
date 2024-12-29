@@ -24,6 +24,28 @@ namespace CSharpLib.Extensions
         }
 
         /// <summary>
+        /// Returns a copy of the list with one item replaced.
+        /// </summary>
+        public static List<T> WithItemAt<T>(this List<T> items, T item, int index) where T : new()
+        {
+            var result = new List<T>(items);
+            result[index] = item;
+            return result;
+        }
+
+        public static int FindIndex<T>(this List<T> items, Func<T, bool> predicate)
+        {
+            for (var i = 0; i < items.Count; i++)
+            {
+                if (predicate(items[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        /// <summary>
         /// Returns a new enumerable where each item is the aggregation of three adjacent items in the original list.
         /// </summary>
         public static IEnumerable<T2> SlidingWindow3<T1, T2>(this List<T1> items, Func<T1, T1, T1, T2> producer)

@@ -123,7 +123,7 @@ namespace CSharpLib.Extensions
 
             bool Replace()
             {
-                foreach(var translation in translations)
+                foreach (var translation in translations)
                 {
                     if (s.IndexOf(translation.Key) == idx)
                     {
@@ -151,5 +151,25 @@ namespace CSharpLib.Extensions
                 { "nine", "9" }
             });
         }
+
+        public static string WithReplacedChar(this string str, int index, char c)
+        {
+            char[] array = str.ToCharArray();
+            array[index] = c;
+            return new string(array);
+        }
+
+        public static int FindIndex(this string s, Func<char, bool> predicate)
+        {
+            for (var i = 0; i < s.Length; i++)
+            {
+                if (predicate(s[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
     }
 }
