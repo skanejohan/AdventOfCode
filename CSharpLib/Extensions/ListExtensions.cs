@@ -56,6 +56,26 @@ namespace CSharpLib.Extensions
             }
         }
 
+        /// <summary>
+        /// Returns an enumerable where each item a n-sized window.
+        /// </summary>
+        public static IEnumerable<IEnumerable<T>> SlidingWindow<T>(this List<T> items, int n)
+        {
+            var window = new List<T>();
+            foreach (var item in items)
+            {
+                window.Add(item);
+                if (window.Count > n)
+                {
+                    window.RemoveAt(0);
+                }
+                if (window.Count == n)
+                {
+                    yield return window;
+                }
+            }
+        }
+
         private static int NoOfChanges<T>(this List<T> items, Func<T, T, bool> isChange)
         {
             var item = items[0];
