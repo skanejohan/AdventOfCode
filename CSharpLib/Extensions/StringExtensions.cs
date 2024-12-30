@@ -171,5 +171,12 @@ namespace CSharpLib.Extensions
             return -1;
         }
 
+        public static string InsertSorted(this string s, string toInsert, string delimiter = ",")
+        {
+            var list = s.Split(delimiter).ToList();
+            list.Add(toInsert);
+            list.Sort();
+            return string.Join(",", list);
+        }
     }
 }
