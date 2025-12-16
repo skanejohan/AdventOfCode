@@ -21,5 +21,16 @@
         {
             return n & ~(1 << bit);
         }
+
+        public static int CountBits(this int value)
+        {
+            int count = 0;
+            while (value != 0)
+            {
+                count++;
+                value &= value - 1;
+            }
+            return count;
+        }
     }
 }
